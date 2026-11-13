@@ -1,0 +1,94 @@
+extends CanvasLayer
+var llaves = []
+var nombresLlaves = {}
+var objetosRecogidos = []
+var ganzuas = 0
+var bateria = 100.0
+var vida = -1.0
+var piedras = 0
+var pistola = false
+var bengalas = 0
+var hamburguesas = 0
+var hamburguesasEntregadas = 0
+var clienteEnojado = false
+var inventarioAbierto = false
+@onready var etiquetaMensaje = $EtiquetaMensaje
+@onready var etiquetaAviso = $EtiquetaAviso
+@onready var temporizadorMensaje = $TemporizadorMensaje
+@onready var panelInventario = $PanelInventario
+@onready var etiquetaLista = $PanelInventario/EtiquetaLista
+func agregarLlave(idLlave, nombre):
+	if not llaves.has(idLlave):
+		llaves.append(idLlave)
+		nombresLlaves[idLlave] = nombre
+func tieneLlave(idLlave):
+	return llaves.has(idLlave)
+func quitarLlave(idLlave):
+	llaves.erase(idLlave)
+	nombresLlaves.erase(idLlave)
+func agregarGanzua():
+	ganzuas += 1
+func quitarGanzua():
+	ganzuas -= 1
+func tieneGanzua():
+	return ganzuas > 0
+func cargarBateria(cantidad):
+	bateria = min(bateria + cantidad, 100.0)
+func marcarRecogido(idObjeto):
+	if not objetosRecogidos.has(idObjeto):
+		objetosRecogidos.append(idObjeto)
+func yaRecogido(idObjeto):
+	return objetosRecogidos.has(idObjeto)
+func mostrarMensaje(texto):
+	etiquetaMensaje.text = texto
+	etiquetaMensaje.visible = true
+	temporizadorMensaje.start()
+func ocultarMensaje():
+	etiquetaMensaje.visible = false
+func mostrarAviso(texto):
+	etiquetaAviso.text = texto
+	etiquetaAviso.visible = true
+func ocultarAviso():
+	etiquetaAviso.visible = false
+func _process(delta):
+	if Input.is_action_just_pressed("inventario"):
+		alternarInventario()
+	elif inventarioAbierto and Input.is_action_just_pressed("ui_cancel"):
+		cerrarInventario()
+func alternarInventario():
+	if inventarioAbierto:
+		cerrarInventario()
+	elif not get_tree().paused:
+		abrirInventario()
+func abrirInventario():
+	inventarioAbierto = true
+	etiquetaLista.text = textoInventario()
+	panelInventario.visible = true
+	get_tree().paused = true
+func cerrarInventario():
+	inventarioAbierto = false
+	panelInventario.visible = false
+	get_tree().paused = false
+func textoInventario():
+	var texto = ""
+	if llaves.has("sube"):
+		texto += "SUBE: conseguida\n\n"
+	if llaves.has("powerbank"):
+		texto += "POWERBANK: conseguido (el celular se queda al 100%)\n\n"
+	else:
+		texto += "Celular: " + str(int(bateria)) + "%\n\n"
+	if pistola:
+		texto += "Pistola de bengalas: " + str(bengalas) + " bengalas\n\n"
+	if hamburguesas > 0:
+		texto += "Hamburguesas: " + str(hamburguesas) + " (C para comer, cura toda la vida)\n\n"
+	if hamburguesasEntregadas > 0 and hamburguesasEntregadas < 3 and not clienteEnojado:
+		texto += "Hamburguesas entregadas al Cliente: " + str(hamburguesasEntregadas) + "/3\n\n"
+	texto += "Llaves:\n"
+	var hayLlaves = false
+	for idLlave in llaves:
+		if idLlave != "sube" and idLlave != "powerbank":
+			texto += "  - " + nombresLlaves[idLlave] + "\n"
+			hayLlaves = true
+	if not hayLlaves:
+		texto += "  ninguna\n"
+	return texto + "\nGanzuas: " + str(ganzuas)
