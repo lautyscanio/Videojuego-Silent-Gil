@@ -61,6 +61,33 @@ La historia completa está en [docs/historia.md](docs/historia.md).
 
 ## Cómo está organizado
 
-- `escenas/`: un `.tscn` por nivel y las piezas que se reutilizan (`cartel`, `objetoClave`, `puerta`, `entradaNivel`, `enemigo`, `powerbank`).
-- `scripts/`: un script por escena. `CambioNivel` (autoload) lleva al jugador de un nivel a otro y lo deja en el punto de destino.
+Las escenas van en `escenas/` agrupadas por tema y todos los scripts en `scripts/` (el nombre del script es el de su escena: `jugador.tscn` usa `scripts/jugador.gd`):
+
+```
+escenas/
+  niveles/      nivel_1 ... nivel_7
+    mapas/      estacion_visual y plaza_visual (el dibujo del mapa de nivel_1)
+  jugador/      jugador, proyectil (piedras) y bengala
+  enemigos/     enemigo
+  objetos/      consumible, objeto_clave, cartel, piedra, powerbank, bengalas, escondite, punto_carga, farola
+  mundo/        puerta, entrada_nivel, teletransporte, zona_mensaje, zona_tutorial, tren
+  interfaz/     inventario, tutorial, menu_pausa y objetivo (autoloads)
+  minijuegos/   cerradura y pernos (autoloads)
+  pruebas/      escena de prueba suelta (llave, puerta y ganzuas)
+scripts/        un .gd por escena, mas los que no tienen escena propia (nivel, cambio_nivel, cliente, guarda, aparicion, pathfinding, escalera, tren_fantasma, luz_parpadeo)
+assets/         imagenes y tilesets
+docs/           historia y trabajos practicos
+```
+
+- Autoloads: `Inventario`, `Cerradura`, `Pernos`, `Tutorial`, `MenuPausa`, `CambioNivel` y `Objetivo`. `Inventario` guarda lo que tiene que sobrevivir al cambiar de nivel (llaves, vida, bateria, piedras).
+- `CambioNivel` lleva al jugador de un nivel a otro y lo deja en el punto de destino.
+- `nivel.gd` (`class_name Nivel`) acomoda al jugador y muestra el texto de historia de cada nivel (`titulo_intro` y `texto_intro` se cargan desde el inspector).
+- `enemigo.gd` (`class_name Enemigo`) es la base de los fisuras; `cliente.gd` y `guarda.gd` heredan de ahi.
 - `pathfinding.gd`: arma una grilla con las colisiones del nivel y los enemigos la usan para rodear paredes y puertas en vez de chocarse. Si un nivel no tiene el nodo `Pathfinding`, persiguen en línea recta.
+
+### Convenciones
+
+- Nombres en español y en `snake_case` (archivos, variables, funciones y señales). Los handlers de señales son los que genera el editor: `_on_body_entered`, `_on_temporizador_golpe_timeout`, etc.
+- El daño se aplica llamando a `recibir_daño(cantidad)`. El jugador y los enemigos lo tienen.
+- Las variables `@export` **sin ñ** (`dano`, no `daño`): Godot no guarda bien en el `.tscn` las propiedades con ñ y el valor puesto en el inspector se pierde al volver a abrir la escena.
+- Acciones de input: `arriba`, `abajo`, `izquierda`, `derecha`, `atacar` (Espacio), `disparar` (E), `interactuar` (F), `inventario` (T), `linterna` (Q), `ayuda` (H) y `comer` (C).

@@ -2,16 +2,16 @@
 
 [ext_resource type="Script" path="res://scripts/nivel.gd" id="nivel"]
 [ext_resource type="Script" path="res://scripts/pathfinding.gd" id="pathfinding"]
-[ext_resource type="PackedScene" uid="uid://oob0ouo3ypvy" path="res://escenas/jugador.tscn" id="1_jugador"]
-[ext_resource type="PackedScene" path="res://escenas/entradaNivel.tscn" id="e1"]
-[ext_resource type="PackedScene" path="res://escenas/piedra.tscn" id="e2"]
-[ext_resource type="PackedScene" path="res://escenas/consumible.tscn" id="e3"]
-[ext_resource type="PackedScene" path="res://escenas/bengalas.tscn" id="e4"]
-[ext_resource type="PackedScene" path="res://escenas/cartel.tscn" id="e5"]
-[ext_resource type="PackedScene" path="res://escenas/enemigo.tscn" id="e6"]
+[ext_resource type="PackedScene" uid="uid://oob0ouo3ypvy" path="res://escenas/jugador/jugador.tscn" id="1_jugador"]
+[ext_resource type="PackedScene" path="res://escenas/mundo/entrada_nivel.tscn" id="e1"]
+[ext_resource type="PackedScene" path="res://escenas/objetos/piedra.tscn" id="e2"]
+[ext_resource type="PackedScene" path="res://escenas/objetos/consumible.tscn" id="e3"]
+[ext_resource type="PackedScene" path="res://escenas/objetos/bengalas.tscn" id="e4"]
+[ext_resource type="PackedScene" path="res://escenas/objetos/cartel.tscn" id="e5"]
+[ext_resource type="PackedScene" path="res://escenas/enemigos/enemigo.tscn" id="e6"]
 [ext_resource type="Script" path="res://scripts/tren_fantasma.gd" id="e10"]
-[ext_resource type="PackedScene" path="res://escenas/puerta.tscn" id="e11"]
-[ext_resource type="PackedScene" path="res://escenas/objetoClave.tscn" id="e12"]
+[ext_resource type="PackedScene" path="res://escenas/mundo/puerta.tscn" id="e11"]
+[ext_resource type="PackedScene" path="res://escenas/objetos/objeto_clave.tscn" id="e12"]
 [ext_resource type="Texture2D" path="res://assets/texturas/baldosa.png" id="tx_baldosa"]
 [ext_resource type="Texture2D" path="res://assets/texturas/concreto.png" id="tx_concreto"]
 [ext_resource type="Texture2D" path="res://assets/texturas/ladrillo.png" id="tx_ladrillo"]
@@ -96,8 +96,8 @@ size = Vector2(2432, 32)
 
 [node name="NivelSubteLineaC" type="Node2D"]
 script = ExtResource("nivel")
-tituloIntro = "SUBTE LÍNEA C"
-textoIntro = "Es lo más oscuro que vas a ver y no hay donde cargar el celular: sin powerbank se te acaba la batería (si pasa, subí por la escalera). Hay que llegar a la puerta de servicio, al fondo a la derecha, pero está cerrada: la llave quedó en la cabina de señales del ramal. Ojo al cruzar las vías. Los pálidos solo se mueven si la linterna (Q) está prendida: apagala para pasar de largo."
+titulo_intro = "SUBTE LÍNEA C"
+texto_intro = "Es lo más oscuro que vas a ver y no hay donde cargar el celular: sin powerbank se te acaba la batería (si pasa, subí por la escalera). Hay que llegar a la puerta de servicio, al fondo a la derecha, pero está cerrada: la llave quedó en la cabina de señales del ramal. Ojo al cruzar las vías. Los pálidos solo se mueven si la linterna (Q) está prendida: apagala para pasar de largo."
 
 [node name="Oscuridad" type="CanvasModulate" parent="."]
 color = Color(0.012, 0.012, 0.018, 1)
@@ -911,9 +911,9 @@ position = Vector2(224, 160)
 [node name="SubirPlaza" parent="." instance=ExtResource("e1")]
 position = Vector2(194, 332)
 scale = Vector2(1, 1)
-rutaNivel = "res://escenas/nivel_1.tscn"
-puntoDestino = "PUNTO_SALIDA_SUBTE"
-textoAviso = "F para subir a la plaza"
+ruta_nivel = "res://escenas/niveles/nivel_1.tscn"
+punto_destino = "PUNTO_SALIDA_SUBTE"
+texto_aviso = "F para subir a la plaza"
 
 [node name="Piedra1" parent="." instance=ExtResource("e2")]
 position = Vector2(780, 620)
@@ -927,23 +927,23 @@ position = Vector2(3150, 620)
 [node name="Golosina1" parent="." instance=ExtResource("e3")]
 position = Vector2(1700, 1200)
 curacion = 1
-nombreConsumible = "Golosina"
+nombre_consumible = "Golosina"
 verbo = "comer"
-rutaTextura = "res://assets/argentinian-assets-pack-v1.0 (1)/comida/golosina-01.png"
+ruta_textura = "res://assets/argentinian-assets-pack-v1.0 (1)/comida/golosina-01.png"
 
 [node name="Golosina2" parent="." instance=ExtResource("e3")]
 position = Vector2(3500, 1230)
 curacion = 1
-nombreConsumible = "Golosina"
+nombre_consumible = "Golosina"
 verbo = "comer"
-rutaTextura = "res://assets/argentinian-assets-pack-v1.0 (1)/comida/golosina-02.png"
+ruta_textura = "res://assets/argentinian-assets-pack-v1.0 (1)/comida/golosina-02.png"
 
 [node name="Choripan" parent="." instance=ExtResource("e3")]
 position = Vector2(4350, 560)
 curacion = 2
-nombreConsumible = "Choripan"
+nombre_consumible = "Choripan"
 verbo = "comer"
-rutaTextura = "res://assets/argentinian-assets-pack-v1.0 (1)/comida/choripan.png"
+ruta_textura = "res://assets/argentinian-assets-pack-v1.0 (1)/comida/choripan.png"
 
 [node name="CajaBengalas" parent="." instance=ExtResource("e4")]
 position = Vector2(3616, 1560)
@@ -952,131 +952,131 @@ cantidad = 4
 [node name="PuertaServicio" parent="." instance=ExtResource("e1")]
 position = Vector2(4608, 544)
 scale = Vector2(1, 2)
-rutaNivel = "res://escenas/nivel_6.tscn"
-puntoDestino = "PUNTO_APARICION_JUGADOR"
-textoAviso = "F para abrir la puerta de servicio"
-idLlaveRequerida = "llaveServicio"
-mensajeBloqueada = "Cerrada con llave. Hace falta la llave de servicio"
+ruta_nivel = "res://escenas/niveles/nivel_6.tscn"
+punto_destino = "PUNTO_APARICION_JUGADOR"
+texto_aviso = "F para abrir la puerta de servicio"
+llave_requerida = "llaveServicio"
+mensaje_bloqueada = "Cerrada con llave. Hace falta la llave de servicio"
 
 [node name="CartelLinea" parent="." instance=ExtResource("e5")]
 position = Vector2(224, 330)
 titulo = "LÍNEA C"
 texto = "Cabecera Constitución. Última estación. Hace rato que no pasa nadie por acá, pero el cartel de «próximo tren» sigue contando."
-rutaTextura = "res://assets/carteles/cartel_info.png"
+ruta_textura = "res://assets/carteles/cartel_info.png"
 
 [node name="CartelNombre" parent="." instance=ExtResource("e5")]
 position = Vector2(1120, 530)
 titulo = "ANDÉN"
 texto = "El cartel del andén dice «Próxima estación: Constitución». Venís de Constitución."
-rutaTextura = "res://assets/carteles/cartel_alerta.png"
+ruta_textura = "res://assets/carteles/cartel_alerta.png"
 
 [node name="CartelNota" parent="." instance=ExtResource("e5")]
 position = Vector2(1930, 530)
 titulo = "NOTA EN LA COLUMNA"
 texto = "Escrito con fibrón, 3:07: «se quedan quietos mientras no los alumbrás. Pasá por al lado sin mirarlos»."
-rutaTextura = "res://assets/carteles/cartel_madera.png"
+ruta_textura = "res://assets/carteles/cartel_madera.png"
 
 [node name="CartelTren" parent="." instance=ExtResource("e5")]
 position = Vector2(2800, 1360)
 titulo = "VÍAS"
 texto = "Acaba de pasar un tren sin nadie adentro. Ni conductor. Las ventanas prendidas y no frenó en ningún andén. Las vías siguen calientes."
-rutaTextura = "res://assets/carteles/cartel_alerta.png"
+ruta_textura = "res://assets/carteles/cartel_alerta.png"
 
 [node name="CartelServicio" parent="." instance=ExtResource("e5")]
 position = Vector2(4400, 560)
 titulo = "PUERTA DE SERVICIO"
 texto = "Solo personal autorizado. Cerrada con llave. Escrito con fibrón: «la llave quedó en la cabina de señales del ramal». Del otro lado se escucha un silbato, lejos."
-rutaTextura = "res://assets/carteles/cartel_llave.png"
+ruta_textura = "res://assets/carteles/cartel_llave.png"
 
 [node name="Fisura01" parent="." instance=ExtResource("e6")]
 position = Vector2(1000, 560)
 vida = 12
 dano = 1.5
 variante = 2
-colorNormal = Color(0.78, 0.84, 1, 1)
-rangoDeteccion = 300
-soloConLuz = true
+color_normal = Color(0.78, 0.84, 1, 1)
+rango_deteccion = 300
+solo_con_luz = true
 
 [node name="Fisura02" parent="." instance=ExtResource("e6")]
 position = Vector2(1500, 700)
 vida = 12
 dano = 1.5
 variante = 2
-colorNormal = Color(0.78, 0.84, 1, 1)
-rangoDeteccion = 300
-soloConLuz = true
+color_normal = Color(0.78, 0.84, 1, 1)
+rango_deteccion = 300
+solo_con_luz = true
 
 [node name="Fisura03" parent="." instance=ExtResource("e6")]
 position = Vector2(2000, 1200)
 vida = 12
 dano = 1.5
 variante = 2
-colorNormal = Color(0.78, 0.84, 1, 1)
-rangoDeteccion = 300
-soloConLuz = true
+color_normal = Color(0.78, 0.84, 1, 1)
+rango_deteccion = 300
+solo_con_luz = true
 
 [node name="Fisura04" parent="." instance=ExtResource("e6")]
 position = Vector2(2700, 650)
 vida = 12
 dano = 1.5
 variante = 2
-colorNormal = Color(0.78, 0.84, 1, 1)
-rangoDeteccion = 300
-soloConLuz = true
+color_normal = Color(0.78, 0.84, 1, 1)
+rango_deteccion = 300
+solo_con_luz = true
 
 [node name="Fisura05" parent="." instance=ExtResource("e6")]
 position = Vector2(3100, 1340)
 vida = 12
 dano = 1.5
 variante = 2
-colorNormal = Color(0.78, 0.84, 1, 1)
-rangoDeteccion = 300
-soloConLuz = true
+color_normal = Color(0.78, 0.84, 1, 1)
+rango_deteccion = 300
+solo_con_luz = true
 
 [node name="Fisura06" parent="." instance=ExtResource("e6")]
 position = Vector2(3100, 640)
 vida = 12
 dano = 1.5
 variante = 2
-colorNormal = Color(0.78, 0.84, 1, 1)
-rangoDeteccion = 300
-soloConLuz = true
+color_normal = Color(0.78, 0.84, 1, 1)
+rango_deteccion = 300
+solo_con_luz = true
 
 [node name="Fisura07" parent="." instance=ExtResource("e6")]
 position = Vector2(3700, 1248)
 vida = 12
 dano = 1.5
 variante = 2
-colorNormal = Color(0.78, 0.84, 1, 1)
-rangoDeteccion = 300
-soloConLuz = true
+color_normal = Color(0.78, 0.84, 1, 1)
+rango_deteccion = 300
+solo_con_luz = true
 
 [node name="Fisura08" parent="." instance=ExtResource("e6")]
 position = Vector2(4064, 900)
 vida = 12
 dano = 1.5
 variante = 2
-colorNormal = Color(0.78, 0.84, 1, 1)
-rangoDeteccion = 300
-soloConLuz = true
+color_normal = Color(0.78, 0.84, 1, 1)
+rango_deteccion = 300
+solo_con_luz = true
 
 [node name="Fisura09" parent="." instance=ExtResource("e6")]
 position = Vector2(4300, 544)
 vida = 12
 dano = 1.5
 variante = 2
-colorNormal = Color(0.78, 0.84, 1, 1)
-rangoDeteccion = 300
-soloConLuz = true
+color_normal = Color(0.78, 0.84, 1, 1)
+rango_deteccion = 300
+solo_con_luz = true
 
 [node name="Fisura10" parent="." instance=ExtResource("e6")]
 position = Vector2(600, 800)
 vida = 12
 dano = 1.5
 variante = 2
-colorNormal = Color(0.78, 0.84, 1, 1)
-rangoDeteccion = 300
-soloConLuz = true
+color_normal = Color(0.78, 0.84, 1, 1)
+rango_deteccion = 300
+solo_con_luz = true
 
 [node name="TrenFantasma" type="Node2D" parent="."]
 script = ExtResource("e10")
@@ -1086,13 +1086,13 @@ position = Vector2(3616, 1424)
 rotation = 1.5708
 scale = Vector2(1, 2)
 forzar = true
-mensajeAbierta = "Forzaste la puerta de la cabina de señales"
-textoAviso = "F para forzar la cabina de señales"
+mensaje_abierta = "Forzaste la puerta de la cabina de señales"
+texto_aviso = "F para forzar la cabina de señales"
 
 [node name="LlaveServicio" parent="." instance=ExtResource("e12")]
 position = Vector2(3600, 1606)
-idLlave = "llaveServicio"
-nombreObjeto = "Llave de servicio"
+id_llave = "llaveServicio"
+nombre_objeto = "Llave de servicio"
 
 [node name="CartelCabina" parent="." instance=ExtResource("e5")]
 position = Vector2(3580, 1500)
@@ -1104,18 +1104,18 @@ position = Vector2(3800, 1240)
 vida = 12
 dano = 1.5
 variante = 2
-colorNormal = Color(0.78, 0.84, 1, 1)
-rangoDeteccion = 300
-soloConLuz = true
+color_normal = Color(0.78, 0.84, 1, 1)
+rango_deteccion = 300
+solo_con_luz = true
 
 [node name="Fisura12" parent="." instance=ExtResource("e6")]
 position = Vector2(3430, 1240)
 vida = 12
 dano = 1.5
 variante = 2
-colorNormal = Color(0.78, 0.84, 1, 1)
-rangoDeteccion = 300
-soloConLuz = true
+color_normal = Color(0.78, 0.84, 1, 1)
+rango_deteccion = 300
+solo_con_luz = true
 
 [node name="PUNTO_APARICION_JUGADOR" type="Marker2D" parent="."]
 position = Vector2(224, 224)

@@ -23,5 +23,5 @@ shape = SubResource("RectangleShape2D_puerta")
 [node name="ColisionBloqueo" type="CollisionShape2D" parent="Bloqueo"]
 shape = SubResource("RectangleShape2D_bloqueo")
 
-[connection signal="body_entered" from="." to="." method="alEntrarCuerpo"]
-[connection signal="body_exited" from="." to="." method="alSalirCuerpo"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

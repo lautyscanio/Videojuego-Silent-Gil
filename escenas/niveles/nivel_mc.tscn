@@ -1,19 +1,19 @@
 [gd_scene format=3]
 
-[ext_resource type="PackedScene" uid="uid://oob0ouo3ypvy" path="res://escenas/jugador.tscn" id="1_jugador"]
-[ext_resource type="Script" path="res://scripts/nivel_mc.gd" id="2_nivel"]
-[ext_resource type="Script" path="res://scripts/entradaNivel.gd" id="3_entrada"]
+[ext_resource type="PackedScene" uid="uid://oob0ouo3ypvy" path="res://escenas/jugador/jugador.tscn" id="1_jugador"]
+[ext_resource type="Script" path="res://scripts/nivel.gd" id="2_nivel"]
+[ext_resource type="Script" path="res://scripts/entrada_nivel.gd" id="3_entrada"]
 [ext_resource type="Script" path="res://scripts/escalera.gd" id="4_escalera"]
 [ext_resource type="Script" path="res://scripts/pathfinding.gd" id="8_pathfinding"]
-[ext_resource type="PackedScene" path="res://escenas/cartel.tscn" id="10_cartel"]
-[ext_resource type="PackedScene" path="res://escenas/enemigo.tscn" id="11_enemigo"]
-[ext_resource type="PackedScene" path="res://escenas/powerbank.tscn" id="12_powerbank"]
+[ext_resource type="PackedScene" path="res://escenas/objetos/cartel.tscn" id="10_cartel"]
+[ext_resource type="PackedScene" path="res://escenas/enemigos/enemigo.tscn" id="11_enemigo"]
+[ext_resource type="PackedScene" path="res://escenas/objetos/powerbank.tscn" id="12_powerbank"]
 [ext_resource type="Script" path="res://scripts/aparicion.gd" id="13_aparicion"]
-[ext_resource type="PackedScene" path="res://escenas/consumible.tscn" id="14_consumible"]
-[ext_resource type="PackedScene" path="res://escenas/bengalas.tscn" id="15_bengalas"]
+[ext_resource type="PackedScene" path="res://escenas/objetos/consumible.tscn" id="14_consumible"]
+[ext_resource type="PackedScene" path="res://escenas/objetos/bengalas.tscn" id="15_bengalas"]
 [ext_resource type="Script" path="res://scripts/cliente.gd" id="16_cliente"]
-[ext_resource type="PackedScene" path="res://escenas/escondite.tscn" id="17_escondite"]
-[ext_resource type="PackedScene" path="res://escenas/puntoCarga.tscn" id="18_carga"]
+[ext_resource type="PackedScene" path="res://escenas/objetos/escondite.tscn" id="17_escondite"]
+[ext_resource type="PackedScene" path="res://escenas/objetos/punto_carga.tscn" id="18_carga"]
 [ext_resource type="Script" path="res://scripts/luz_parpadeo.gd" id="19_parpadeo"]
 [ext_resource type="GradientTexture2D" path="res://assets/estacion/luz_radial.tres" id="20_luz"]
 [ext_resource type="Texture2D" path="res://assets/texturas/baldosa.png" id="tx_baldosa"]
@@ -145,6 +145,8 @@ size = Vector2(128, 48)
 
 [node name="NivelMc" type="Node2D"]
 script = ExtResource("2_nivel")
+titulo_intro = "McDONALD'S"
+texto_intro = "Está a oscuras y el parlante repite el pedido 307. Sentado a la derecha de la planta baja hay un fisura comiendo: el Cliente. Tiene la llave del candado del subte. Hablale con F. Leé la nota de la entrada antes. En el piso de arriba hay un powerbank (escalera, F)."
 [node name="Oscuridad" type="CanvasModulate" parent="."]
 color = Color(0.035, 0.035, 0.045, 1)
 
@@ -2984,7 +2986,7 @@ polygon = PackedVector2Array(0, 0, 72, 0, 72, 64, 0, 64)
 position = Vector2(1824, 672)
 script = ExtResource("4_escalera")
 destino = NodePath("../PUNTO_LLEGADA_ESCALERA_P1")
-textoAviso = "F para subir"
+texto_aviso = "F para subir"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZonaEscaleraSubir"]
 shape = SubResource("Shape_256x192")
@@ -2992,9 +2994,9 @@ shape = SubResource("Shape_256x192")
 [node name="ZonaSalida" type="Area2D" parent="."]
 position = Vector2(1088, 1288)
 script = ExtResource("3_entrada")
-rutaNivel = "res://escenas/nivel_1.tscn"
-puntoDestino = "PUNTO_SALIDA_MC"
-textoAviso = "F para salir"
+ruta_nivel = "res://escenas/niveles/nivel_1.tscn"
+punto_destino = "PUNTO_SALIDA_MC"
+texto_aviso = "F para salir"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZonaSalida"]
 shape = SubResource("Shape_128x48")
@@ -3003,7 +3005,7 @@ shape = SubResource("Shape_128x48")
 position = Vector2(3744, 672)
 script = ExtResource("4_escalera")
 destino = NodePath("../PUNTO_LLEGADA_ESCALERA")
-textoAviso = "F para bajar"
+texto_aviso = "F para bajar"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZonaEscaleraBajar"]
 shape = SubResource("Shape_256x192")
@@ -3015,19 +3017,19 @@ script = ExtResource("8_pathfinding")
 position = Vector2(1004, 1184)
 titulo = "PEDIDO 307"
 texto = "El parlante repite siempre el mismo número: «pedido 307, pedido 307». Hay bandejas servidas en todas las mesas y la comida no se pudre."
-rutaTextura = "res://assets/carteles/cartel_alerta.png"
+ruta_textura = "res://assets/carteles/cartel_alerta.png"
 
 [node name="CartelHamburguesas" parent="." instance=ExtResource("10_cartel")]
 position = Vector2(1748, 1254)
 titulo = "NOTA"
 texto = "Escrita a las apuradas, 3:07: «El de la mesa tiene la llave del candado. Te la da si le juntás sus 3 hamburguesas: las escondieron acá adentro y él te dice dónde». Más abajo, subrayado: «NO TE COMAS NINGUNA. Te curan toda la vida, pero si te comés una no hay más trato: te pelea a muerte»."
-rutaTextura = "res://assets/carteles/cartel_madera.png"
+ruta_textura = "res://assets/carteles/cartel_madera.png"
 
 [node name="CartelTicket" parent="." instance=ExtResource("10_cartel")]
 position = Vector2(2994, 434)
 titulo = "OFICINA"
 texto = "Un ticket de pedido, el 307, pegado con cinta en el escritorio. Nunca se entregó. Detrás de la caja fuerte hay un cargador portátil."
-rutaTextura = "res://assets/carteles/cartel_info.png"
+ruta_textura = "res://assets/carteles/cartel_info.png"
 
 [node name="Cliente" parent="." instance=ExtResource("11_enemigo")]
 script = ExtResource("16_cliente")
@@ -3035,14 +3037,14 @@ position = Vector2(1708, 1104)
 scale = Vector2(1.5, 1.5)
 vida = 30
 velocidad = 70
-rangoAtaque = 55
+rango_ataque = 55
 dano = 2
-rangoDeteccion = 350
-idLlaveBotin = "llaveSubte"
-tiempoAturdido = 0.0
-nombreLlaveBotin = "Llave del candado"
+rango_deteccion = 350
+llave_botin = "llaveSubte"
+tiempo_aturdido = 0.0
+nombre_llave_botin = "Llave del candado"
 variante = 1
-colorNormal = Color(1, 0.75, 0.6, 1)
+color_normal = Color(1, 0.75, 0.6, 1)
 
 [node name="Powerbank" parent="." instance=ExtResource("12_powerbank")]
 position = Vector2(3104, 444)
@@ -3050,8 +3052,8 @@ position = Vector2(3104, 444)
 [node name="BichosCocina" type="Node2D" parent="."]
 script = ExtResource("13_aparicion")
 escena = ExtResource("11_enemigo")
-idLlaveDisparadora = "powerbank"
-idAparicion = "bichosCocina"
+llave_disparadora = "powerbank"
+id_aparicion = "bichosCocina"
 
 [node name="Bicho1" type="Marker2D" parent="BichosCocina"]
 position = Vector2(3522, 378)
@@ -3071,15 +3073,15 @@ cantidad = 3
 
 [node name="EsconditeHorno" parent="." instance=ExtResource("17_escondite")]
 position = Vector2(1216, 344)
-textoAviso = "F para revisar el horno"
+texto_aviso = "F para revisar el horno"
 
 [node name="EsconditeBano" parent="." instance=ExtResource("17_escondite")]
 position = Vector2(1880, 366)
-textoAviso = "F para revisar el inodoro"
+texto_aviso = "F para revisar el inodoro"
 
 [node name="EsconditeSillon" parent="." instance=ExtResource("17_escondite")]
 position = Vector2(3696, 1072)
-textoAviso = "F para revisar debajo del sillón"
+texto_aviso = "F para revisar debajo del sillón"
 
 [node name="PuntoCarga1" parent="." instance=ExtResource("18_carga")]
 position = Vector2(1250, 1236)
@@ -3166,9 +3168,9 @@ position = Vector2(3744, 800)
 [node name="Jugador" parent="." instance=ExtResource("1_jugador")]
 position = Vector2(1088, 1184)
 
-[connection signal="body_entered" from="ZonaSalida" to="ZonaSalida" method="alEntrarCuerpo"]
-[connection signal="body_exited" from="ZonaSalida" to="ZonaSalida" method="alSalirCuerpo"]
-[connection signal="body_entered" from="ZonaEscaleraSubir" to="ZonaEscaleraSubir" method="alEntrarCuerpo"]
-[connection signal="body_exited" from="ZonaEscaleraSubir" to="ZonaEscaleraSubir" method="alSalirCuerpo"]
-[connection signal="body_entered" from="ZonaEscaleraBajar" to="ZonaEscaleraBajar" method="alEntrarCuerpo"]
-[connection signal="body_exited" from="ZonaEscaleraBajar" to="ZonaEscaleraBajar" method="alSalirCuerpo"]
+[connection signal="body_entered" from="ZonaSalida" to="ZonaSalida" method="_on_body_entered"]
+[connection signal="body_exited" from="ZonaSalida" to="ZonaSalida" method="_on_body_exited"]
+[connection signal="body_entered" from="ZonaEscaleraSubir" to="ZonaEscaleraSubir" method="_on_body_entered"]
+[connection signal="body_exited" from="ZonaEscaleraSubir" to="ZonaEscaleraSubir" method="_on_body_exited"]
+[connection signal="body_entered" from="ZonaEscaleraBajar" to="ZonaEscaleraBajar" method="_on_body_entered"]
+[connection signal="body_exited" from="ZonaEscaleraBajar" to="ZonaEscaleraBajar" method="_on_body_exited"]

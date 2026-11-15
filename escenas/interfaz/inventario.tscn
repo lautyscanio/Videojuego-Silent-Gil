@@ -80,4 +80,4 @@ offset_bottom = 270.0
 text = "T o Esc para cerrar"
 horizontal_alignment = 2
 
-[connection signal="timeout" from="TemporizadorMensaje" to="." method="ocultarMensaje"]
+[connection signal="timeout" from="TemporizadorMensaje" to="." method="_on_temporizador_mensaje_timeout"]

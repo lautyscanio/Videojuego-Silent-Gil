@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" path="res://scripts/nivel.gd" id="nivel"]
 [ext_resource type="Script" path="res://scripts/pathfinding.gd" id="pathfinding"]
-[ext_resource type="PackedScene" uid="uid://oob0ouo3ypvy" path="res://escenas/jugador.tscn" id="1_jugador"]
-[ext_resource type="PackedScene" path="res://escenas/puerta.tscn" id="e1"]
-[ext_resource type="PackedScene" path="res://escenas/objetoClave.tscn" id="e2"]
-[ext_resource type="PackedScene" path="res://escenas/entradaNivel.tscn" id="e3"]
-[ext_resource type="PackedScene" path="res://escenas/cartel.tscn" id="e4"]
-[ext_resource type="PackedScene" path="res://escenas/bengalas.tscn" id="e5"]
-[ext_resource type="PackedScene" path="res://escenas/consumible.tscn" id="e6"]
-[ext_resource type="PackedScene" path="res://escenas/enemigo.tscn" id="e7"]
+[ext_resource type="PackedScene" uid="uid://oob0ouo3ypvy" path="res://escenas/jugador/jugador.tscn" id="1_jugador"]
+[ext_resource type="PackedScene" path="res://escenas/mundo/puerta.tscn" id="e1"]
+[ext_resource type="PackedScene" path="res://escenas/objetos/objeto_clave.tscn" id="e2"]
+[ext_resource type="PackedScene" path="res://escenas/mundo/entrada_nivel.tscn" id="e3"]
+[ext_resource type="PackedScene" path="res://escenas/objetos/cartel.tscn" id="e4"]
+[ext_resource type="PackedScene" path="res://escenas/objetos/bengalas.tscn" id="e5"]
+[ext_resource type="PackedScene" path="res://escenas/objetos/consumible.tscn" id="e6"]
+[ext_resource type="PackedScene" path="res://escenas/enemigos/enemigo.tscn" id="e7"]
 [ext_resource type="Texture2D" path="res://assets/texturas/baldosa.png" id="tx_baldosa"]
 [ext_resource type="Texture2D" path="res://assets/texturas/concreto.png" id="tx_concreto"]
 [ext_resource type="Texture2D" path="res://assets/texturas/ladrillo.png" id="tx_ladrillo"]
@@ -70,8 +70,8 @@ size = Vector2(1536, 32)
 
 [node name="NivelCelda" type="Node2D"]
 script = ExtResource("nivel")
-tituloIntro = "LA CELDA"
-textoIntro = "La puerta se cerró sola. Son las 3:07 y el celular sigue gastando batería. Agarrá la ganzúa que está en la celda (F) y sacá los pernos de la rejilla del fondo (F). Por el conducto llegás al depósito de evidencia."
+titulo_intro = "LA CELDA"
+texto_intro = "La puerta se cerró sola. Son las 3:07 y el celular sigue gastando batería. Agarrá la ganzúa que está en la celda (F) y sacá los pernos de la rejilla del fondo (F). Por el conducto llegás al depósito de evidencia."
 
 [node name="Oscuridad" type="CanvasModulate" parent="."]
 color = Color(0.02, 0.02, 0.03, 1)
@@ -429,37 +429,37 @@ position = Vector2(336, 816)
 rotation = 1.5708
 scale = Vector2(1, 1.5)
 forzar = true
-mensajeAbierta = "Sacaste los pernos de la rejilla"
+mensaje_abierta = "Sacaste los pernos de la rejilla"
 
 [node name="GanzuaColchon" parent="." instance=ExtResource("e2")]
 position = Vector2(200, 1010)
-esGanzua = true
-nombreObjeto = "Ganzua"
+es_ganzua = true
+nombre_objeto = "Ganzua"
 
 [node name="SalidaDeposito" parent="." instance=ExtResource("e3")]
 position = Vector2(1200, 464)
 scale = Vector2(1.25, 1.5)
-rutaNivel = "res://escenas/nivel_3.tscn"
-puntoDestino = "MARCADORES/DEPOSITO_ARMA"
-textoAviso = "F para salir al depósito"
+ruta_nivel = "res://escenas/niveles/nivel_3.tscn"
+punto_destino = "MARCADORES/DEPOSITO_ARMA"
+texto_aviso = "F para salir al depósito"
 
 [node name="CartelPared" parent="." instance=ExtResource("e4")]
 position = Vector2(460, 900)
 titulo = "RAYADO EN LA PARED"
 texto = "Alguien rayó la pared con una llave: «cada vez que cierran la puerta son las 3:07». Más abajo: «la rejilla sale, probé»."
-rutaTextura = "res://assets/carteles/cartel_madera.png"
+ruta_textura = "res://assets/carteles/cartel_madera.png"
 
 [node name="PistolaBengalas" parent="." instance=ExtResource("e5")]
 position = Vector2(1100, 330)
 cantidad = 6
-daPistola = true
+da_pistola = true
 
 [node name="Alfajor" parent="." instance=ExtResource("e6")]
 position = Vector2(1300, 1300)
 curacion = 1
-nombreConsumible = "Alfajor"
+nombre_consumible = "Alfajor"
 verbo = "comer"
-rutaTextura = "res://assets/argentinian-assets-pack-v1.0 (1)/comida/alfajor-02-blanco.png"
+ruta_textura = "res://assets/argentinian-assets-pack-v1.0 (1)/comida/alfajor-02-blanco.png"
 
 [node name="Fisura01" parent="." instance=ExtResource("e7")]
 position = Vector2(700, 1300)

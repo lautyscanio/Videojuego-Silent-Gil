@@ -2,18 +2,18 @@
 
 [ext_resource type="Script" path="res://scripts/nivel.gd" id="nivel"]
 [ext_resource type="Script" path="res://scripts/pathfinding.gd" id="pathfinding"]
-[ext_resource type="PackedScene" uid="uid://oob0ouo3ypvy" path="res://escenas/jugador.tscn" id="1_jugador"]
-[ext_resource type="PackedScene" path="res://escenas/teletransporte.tscn" id="e1"]
-[ext_resource type="PackedScene" path="res://escenas/piedra.tscn" id="e2"]
-[ext_resource type="PackedScene" path="res://escenas/consumible.tscn" id="e3"]
-[ext_resource type="PackedScene" path="res://escenas/bengalas.tscn" id="e4"]
-[ext_resource type="PackedScene" path="res://escenas/puerta.tscn" id="e5"]
-[ext_resource type="PackedScene" path="res://escenas/objetoClave.tscn" id="e6"]
-[ext_resource type="PackedScene" path="res://escenas/entradaNivel.tscn" id="e7"]
-[ext_resource type="PackedScene" path="res://escenas/cartel.tscn" id="e8"]
-[ext_resource type="PackedScene" path="res://escenas/enemigo.tscn" id="e9"]
+[ext_resource type="PackedScene" uid="uid://oob0ouo3ypvy" path="res://escenas/jugador/jugador.tscn" id="1_jugador"]
+[ext_resource type="PackedScene" path="res://escenas/mundo/teletransporte.tscn" id="e1"]
+[ext_resource type="PackedScene" path="res://escenas/objetos/piedra.tscn" id="e2"]
+[ext_resource type="PackedScene" path="res://escenas/objetos/consumible.tscn" id="e3"]
+[ext_resource type="PackedScene" path="res://escenas/objetos/bengalas.tscn" id="e4"]
+[ext_resource type="PackedScene" path="res://escenas/mundo/puerta.tscn" id="e5"]
+[ext_resource type="PackedScene" path="res://escenas/objetos/objeto_clave.tscn" id="e6"]
+[ext_resource type="PackedScene" path="res://escenas/mundo/entrada_nivel.tscn" id="e7"]
+[ext_resource type="PackedScene" path="res://escenas/objetos/cartel.tscn" id="e8"]
+[ext_resource type="PackedScene" path="res://escenas/enemigos/enemigo.tscn" id="e9"]
 [ext_resource type="Script" path="res://scripts/guarda.gd" id="e10"]
-[ext_resource type="PackedScene" path="res://escenas/zonaMensaje.tscn" id="e11"]
+[ext_resource type="PackedScene" path="res://escenas/mundo/zona_mensaje.tscn" id="e11"]
 [ext_resource type="Texture2D" path="res://assets/texturas/baldosa.png" id="tx_baldosa"]
 [ext_resource type="Texture2D" path="res://assets/texturas/concreto.png" id="tx_concreto"]
 [ext_resource type="Texture2D" path="res://assets/texturas/ladrillo.png" id="tx_ladrillo"]
@@ -104,8 +104,8 @@ size = Vector2(2720, 32)
 
 [node name="NivelEstacionquenoexiste" type="Node2D"]
 script = ExtResource("nivel")
-tituloIntro = "LA ESTACIÓN QUE NO EXISTE"
-textoIntro = "El cartel dice Constitución, pero ya saliste de ahí. Las puertas de las salas te devuelven a la misma sala: el camino es el túnel largo que sale hacia abajo. Si te devuelve al principio, cruzalo con la linterna apagada (Q). Al final espera el Guarda: con la linterna prendida te ve de lejos; a oscuras no te ve, pero va hacia donde vio tu luz y si le pegás toca el silbato y te persigue igual. Para salir hace falta la SUBE y su silbato."
+titulo_intro = "LA ESTACIÓN QUE NO EXISTE"
+texto_intro = "El cartel dice Constitución, pero ya saliste de ahí. Las puertas de las salas te devuelven a la misma sala: el camino es el túnel largo que sale hacia abajo. Si te devuelve al principio, cruzalo con la linterna apagada (Q). Al final espera el Guarda: con la linterna prendida te ve de lejos; a oscuras no te ve, pero va hacia donde vio tu luz y si le pegás toca el silbato y te persigue igual. Para salir hace falta la SUBE y su silbato."
 
 [node name="Oscuridad" type="CanvasModulate" parent="."]
 color = Color(0.02, 0.02, 0.03, 1)
@@ -794,7 +794,7 @@ position = Vector2(2784, 1920)
 scale = Vector2(1, 2)
 destino = NodePath("../MARCADORES/TUNEL_REAPARICION")
 mensaje = "El tunel te devolvio al principio. Proba a oscuras (Q)"
-soloConLuz = true
+solo_con_luz = true
 
 [node name="Piedra1" parent="." instance=ExtResource("e2")]
 position = Vector2(300, 500)
@@ -808,16 +808,16 @@ position = Vector2(1500, 900)
 [node name="Milanga" parent="." instance=ExtResource("e3")]
 position = Vector2(1250, 1000)
 curacion = 2
-nombreConsumible = "Milanga"
+nombre_consumible = "Milanga"
 verbo = "comer"
-rutaTextura = "res://assets/argentinian-assets-pack-v1.0 (1)/comida/milanga.png"
+ruta_textura = "res://assets/argentinian-assets-pack-v1.0 (1)/comida/milanga.png"
 
 [node name="Alfajor" parent="." instance=ExtResource("e3")]
 position = Vector2(2000, 200)
 curacion = 1
-nombreConsumible = "Alfajor"
+nombre_consumible = "Alfajor"
 verbo = "comer"
-rutaTextura = "res://assets/argentinian-assets-pack-v1.0 (1)/comida/alfajor-03-mani.png"
+ruta_textura = "res://assets/argentinian-assets-pack-v1.0 (1)/comida/alfajor-03-mani.png"
 
 [node name="CajaBengalas" parent="." instance=ExtResource("e4")]
 position = Vector2(1300, 1100)
@@ -827,97 +827,97 @@ cantidad = 3
 position = Vector2(2224, 1024)
 scale = Vector2(1, 2)
 forzar = true
-mensajeAbierta = "Abriste el cuarto cerrado"
+mensaje_abierta = "Abriste el cuarto cerrado"
 
 [node name="RejillaAlacena" parent="." instance=ExtResource("e5")]
 position = Vector2(2768, 1040)
 scale = Vector2(1, 1.5)
 forzar = true
-mensajeAbierta = "Sacaste la rejilla"
+mensaje_abierta = "Sacaste la rejilla"
 
 [node name="SubeAlacena" parent="." instance=ExtResource("e6")]
 position = Vector2(2900, 1090)
-idLlave = "sube"
-nombreObjeto = "SUBE"
-idTutorialPersonalizado = "sube"
+id_llave = "sube"
+nombre_objeto = "SUBE"
+tutorial_propio = "sube"
 
 [node name="GanzuaObjetos" parent="." instance=ExtResource("e6")]
 position = Vector2(1700, 1210)
-esGanzua = true
-nombreObjeto = "Ganzua"
+es_ganzua = true
+nombre_objeto = "Ganzua"
 
 [node name="MolineteSalida" parent="." instance=ExtResource("e7")]
 position = Vector2(3440, 1920)
 scale = Vector2(0.9375, 2.1875)
-rutaNivel = "res://escenas/nivel_7.tscn"
-puntoDestino = "PUNTO_APARICION_JUGADOR"
-textoAviso = "F para pasar el molinete"
-idLlaveRequerida = "sube"
-idLlaveExtra = "silbato"
-mensajeBloqueada = "El molinete no se abre. Hace falta la SUBE y el silbato del guarda"
+ruta_nivel = "res://escenas/niveles/nivel_7.tscn"
+punto_destino = "PUNTO_APARICION_JUGADOR"
+texto_aviso = "F para pasar el molinete"
+llave_requerida = "sube"
+llave_extra = "silbato"
+mensaje_bloqueada = "El molinete no se abre. Hace falta la SUBE y el silbato del guarda"
 
 [node name="CartelEstacion" parent="." instance=ExtResource("e8")]
 position = Vector2(400, 220)
 titulo = "CONSTITUCIÓN"
 texto = "El cartel dice «Constitución». Ya saliste de Constitución. El reloj de arriba marca las 3:07."
-rutaTextura = "res://assets/carteles/cartel_info.png"
+ruta_textura = "res://assets/carteles/cartel_info.png"
 
 [node name="CartelMolinete" parent="." instance=ExtResource("e8")]
 position = Vector2(640, 560)
 titulo = "MOLINETE"
 texto = "De todos los molinetes de esta estación, este es el único que anda con tu SUBE. Y es la única salida."
-rutaTextura = "res://assets/carteles/cartel_llave.png"
+ruta_textura = "res://assets/carteles/cartel_llave.png"
 
 [node name="CartelLoop" parent="." instance=ExtResource("e8")]
 position = Vector2(1430, 590)
 titulo = "NOTA"
 texto = "«La puerta de esta sala da a esta sala. Lo probé cuatro veces». Está firmada con la hora: 3:07."
-rutaTextura = "res://assets/carteles/cartel_madera.png"
+ruta_textura = "res://assets/carteles/cartel_madera.png"
 
 [node name="CartelOscuro" parent="." instance=ExtResource("e8")]
 position = Vector2(1936, 590)
 titulo = "NOTA"
 texto = "«El túnel largo solo cambia si caminás a oscuras. Apagá el celular (Q) y no mires atrás»."
-rutaTextura = "res://assets/carteles/cartel_bateria.png"
+ruta_textura = "res://assets/carteles/cartel_bateria.png"
 
 [node name="CartelGuarda" parent="." instance=ExtResource("e8")]
 position = Vector2(2940, 1620)
 titulo = "NOTA"
 texto = "«El último tren no te dejó acá por error. El guarda quiere que te quedes. Última estación, todos bajan»."
-rutaTextura = "res://assets/carteles/cartel_alerta.png"
+ruta_textura = "res://assets/carteles/cartel_alerta.png"
 
 [node name="CartelAlacena" parent="." instance=ExtResource("e8")]
 position = Vector2(2864, 1030)
 titulo = "ALACENA"
 texto = "Hay una mochila con una campera de colegio, un llavero con un nombre tachado y una SUBE. Nadie vino a buscarlas."
-rutaTextura = "res://assets/carteles/cartel_madera.png"
+ruta_textura = "res://assets/carteles/cartel_madera.png"
 
 [node name="Fisura01" parent="." instance=ExtResource("e9")]
 position = Vector2(1936, 200)
 vida = 12
 dano = 1.5
 variante = 2
-colorNormal = Color(0.78, 0.84, 1, 1)
-rangoDeteccion = 300
-soloConLuz = true
+color_normal = Color(0.78, 0.84, 1, 1)
+rango_deteccion = 300
+solo_con_luz = true
 
 [node name="Fisura02" parent="." instance=ExtResource("e9")]
 position = Vector2(1400, 900)
 vida = 12
 dano = 1.5
 variante = 2
-colorNormal = Color(0.78, 0.84, 1, 1)
-rangoDeteccion = 300
-soloConLuz = true
+color_normal = Color(0.78, 0.84, 1, 1)
+rango_deteccion = 300
+solo_con_luz = true
 
 [node name="Fisura03" parent="." instance=ExtResource("e9")]
 position = Vector2(2500, 700)
 vida = 12
 dano = 1.5
 variante = 2
-colorNormal = Color(0.78, 0.84, 1, 1)
-rangoDeteccion = 300
-soloConLuz = true
+color_normal = Color(0.78, 0.84, 1, 1)
+rango_deteccion = 300
+solo_con_luz = true
 
 [node name="Guarda" parent="." instance=ExtResource("e9")]
 script = ExtResource("e10")
@@ -925,14 +925,14 @@ position = Vector2(3168, 1810)
 vida = 40
 dano = 2
 velocidad = 70
-rangoDeteccion = 600
-rangoAtaque = 60
+rango_deteccion = 600
+rango_ataque = 60
 variante = 1
 scale = Vector2(1.5, 1.5)
-soloConLuz = true
-idLlaveBotin = "silbato"
-nombreLlaveBotin = "Silbato del guarda"
-tiempoAturdido = 0
+solo_con_luz = true
+llave_botin = "silbato"
+nombre_llave_botin = "Silbato del guarda"
+tiempo_aturdido = 0
 
 [node name="ZonaSilbatoLejos" parent="." instance=ExtResource("e11")]
 position = Vector2(544, 1150)

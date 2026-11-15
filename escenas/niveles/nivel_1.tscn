@@ -1,19 +1,19 @@
 [gd_scene format=3 uid="uid://c05rqv3ulkykm"]
 
-[ext_resource type="PackedScene" uid="uid://oob0ouo3ypvy" path="res://escenas/jugador.tscn" id="1_jugador"]
+[ext_resource type="PackedScene" uid="uid://oob0ouo3ypvy" path="res://escenas/jugador/jugador.tscn" id="1_jugador"]
 [ext_resource type="Script" uid="uid://cvsm6pmgwj0e2" path="res://scripts/puerta.gd" id="2_puerta"]
-[ext_resource type="PackedScene" uid="uid://b4jos6t2t4kjo" path="res://escenas/objetoClave.tscn" id="3_objeto"]
-[ext_resource type="PackedScene" uid="uid://c2ogquvnho5bw" path="res://escenas/enemigo.tscn" id="4_enemigo"]
-[ext_resource type="PackedScene" path="res://escenas/zonaTutorial.tscn" id="5_zona"]
+[ext_resource type="PackedScene" uid="uid://b4jos6t2t4kjo" path="res://escenas/objetos/objeto_clave.tscn" id="3_objeto"]
+[ext_resource type="PackedScene" uid="uid://c2ogquvnho5bw" path="res://escenas/enemigos/enemigo.tscn" id="4_enemigo"]
+[ext_resource type="PackedScene" path="res://escenas/mundo/zona_tutorial.tscn" id="5_zona"]
 [ext_resource type="Script" uid="uid://bwk44xvrtavt2" path="res://scripts/nivel_1.gd" id="6_nivel1"]
 [ext_resource type="Texture2D" path="res://assets/estacion/molinete.png" id="9_molinete"]
-[ext_resource type="PackedScene" path="res://escenas/estacion_visual.tscn" id="10_estacion"]
-[ext_resource type="PackedScene" path="res://escenas/tren.tscn" id="11_tren"]
-[ext_resource type="Script" uid="uid://d0f7j8h27kbk5" path="res://scripts/entradaNivel.gd" id="7_entrada"]
-[ext_resource type="PackedScene" path="res://escenas/piedra.tscn" id="8_piedra"]
-[ext_resource type="PackedScene" path="res://escenas/puntoCarga.tscn" id="20_carga"]
-[ext_resource type="PackedScene" path="res://escenas/plaza_visual.tscn" id="30_plaza"]
-[ext_resource type="PackedScene" path="res://escenas/farola.tscn" id="32_farola"]
+[ext_resource type="PackedScene" path="res://escenas/niveles/mapas/estacion_visual.tscn" id="10_estacion"]
+[ext_resource type="PackedScene" path="res://escenas/mundo/tren.tscn" id="11_tren"]
+[ext_resource type="Script" uid="uid://d0f7j8h27kbk5" path="res://scripts/entrada_nivel.gd" id="7_entrada"]
+[ext_resource type="PackedScene" path="res://escenas/objetos/piedra.tscn" id="8_piedra"]
+[ext_resource type="PackedScene" path="res://escenas/objetos/punto_carga.tscn" id="20_carga"]
+[ext_resource type="PackedScene" path="res://escenas/niveles/mapas/plaza_visual.tscn" id="30_plaza"]
+[ext_resource type="PackedScene" path="res://escenas/objetos/farola.tscn" id="32_farola"]
 [ext_resource type="Texture2D" path="res://assets/plaza/arbol_0.png" id="p00_arbol_0"]
 [ext_resource type="Texture2D" path="res://assets/plaza/arbol_1.png" id="p01_arbol_1"]
 [ext_resource type="Texture2D" path="res://assets/plaza/arbol_2.png" id="p02_arbol_2"]
@@ -30,11 +30,11 @@
 [ext_resource type="Texture2D" path="res://assets/plaza/puesto.png" id="p13_puesto"]
 [ext_resource type="Texture2D" path="res://assets/plaza/refugio.png" id="p14_refugio"]
 [ext_resource type="Texture2D" path="res://assets/plaza/subte.png" id="p15_subte"]
-[ext_resource type="PackedScene" path="res://escenas/consumible.tscn" id="50_consumible"]
-[ext_resource type="PackedScene" path="res://escenas/cartel.tscn" id="51_cartel"]
+[ext_resource type="PackedScene" path="res://escenas/objetos/consumible.tscn" id="50_consumible"]
+[ext_resource type="PackedScene" path="res://escenas/objetos/cartel.tscn" id="51_cartel"]
 [ext_resource type="Script" path="res://scripts/pathfinding.gd" id="60_pathfinding"]
-[ext_resource type="PackedScene" path="res://escenas/entradaNivel.tscn" id="61_entrada_nivel"]
-[ext_resource type="PackedScene" path="res://escenas/teletransporte.tscn" id="62_teleport"]
+[ext_resource type="PackedScene" path="res://escenas/mundo/entrada_nivel.tscn" id="61_entrada_nivel"]
+[ext_resource type="PackedScene" path="res://escenas/mundo/teletransporte.tscn" id="62_teleport"]
 [ext_resource type="Texture2D" path="res://assets/texturas/asfalto.png" id="tx_asfalto"]
 [ext_resource type="Texture2D" path="res://assets/texturas/concreto.png" id="tx_concreto"]
 [ext_resource type="Texture2D" path="res://assets/texturas/edificio.png" id="tx_edificio"]
@@ -1651,56 +1651,56 @@ shape = SubResource("Shape_pz_56x24")
 position = Vector2(1250, 2420)
 vida = 5
 velocidad = 85.0
-rangoDeteccion = 300.0
+rango_deteccion = 300.0
 variante = 0
 
 [node name="Vagabundo02" parent="." instance=ExtResource("4_enemigo")]
 position = Vector2(2560, 2340)
 vida = 5
 velocidad = 85.0
-rangoDeteccion = 300.0
+rango_deteccion = 300.0
 variante = 1
 
 [node name="Vagabundo03" parent="." instance=ExtResource("4_enemigo")]
 position = Vector2(980, 3060)
 vida = 5
 velocidad = 85.0
-rangoDeteccion = 300.0
+rango_deteccion = 300.0
 variante = 2
 
 [node name="Vagabundo04" parent="." instance=ExtResource("4_enemigo")]
 position = Vector2(2330, 2810)
 vida = 5
 velocidad = 85.0
-rangoDeteccion = 300.0
+rango_deteccion = 300.0
 variante = 0
 
 [node name="Vagabundo05" parent="." instance=ExtResource("4_enemigo")]
 position = Vector2(3000, 2570)
 vida = 5
 velocidad = 85.0
-rangoDeteccion = 300.0
+rango_deteccion = 300.0
 variante = 1
 
 [node name="Vagabundo06" parent="." instance=ExtResource("4_enemigo")]
 position = Vector2(2900, 3010)
 vida = 5
 velocidad = 85.0
-rangoDeteccion = 300.0
+rango_deteccion = 300.0
 variante = 2
 
 [node name="Vagabundo07" parent="." instance=ExtResource("4_enemigo")]
 position = Vector2(1500, 3210)
 vida = 5
 velocidad = 85.0
-rangoDeteccion = 300.0
+rango_deteccion = 300.0
 variante = 0
 
 [node name="Vagabundo08" parent="." instance=ExtResource("4_enemigo")]
 position = Vector2(3450, 2700)
 vida = 5
 velocidad = 85.0
-rangoDeteccion = 300.0
+rango_deteccion = 300.0
 variante = 1
 
 [node name="PuntoCarga3" parent="." instance=ExtResource("20_carga")]
@@ -1723,65 +1723,65 @@ shape = SubResource("Shape_pz_1696x64")
 [node name="KioscoAlfajor" parent="." instance=ExtResource("50_consumible")]
 position = Vector2(800, 654)
 curacion = 1.0
-nombreConsumible = "Alfajor"
+nombre_consumible = "Alfajor"
 verbo = "comer"
-rutaTextura = "res://assets/argentinian-assets-pack-v1.0 (1)/comida/alfajor-01-negro.png"
+ruta_textura = "res://assets/argentinian-assets-pack-v1.0 (1)/comida/alfajor-01-negro.png"
 
 [node name="KioscoGolosina1" parent="." instance=ExtResource("50_consumible")]
 position = Vector2(896, 654)
 curacion = 1.0
-nombreConsumible = "Golosina"
+nombre_consumible = "Golosina"
 verbo = "comer"
-rutaTextura = "res://assets/argentinian-assets-pack-v1.0 (1)/comida/golosina-02.png"
+ruta_textura = "res://assets/argentinian-assets-pack-v1.0 (1)/comida/golosina-02.png"
 
 [node name="KioscoGolosina2" parent="." instance=ExtResource("50_consumible")]
 position = Vector2(992, 654)
 curacion = 1.0
-nombreConsumible = "Golosina"
+nombre_consumible = "Golosina"
 verbo = "comer"
-rutaTextura = "res://assets/argentinian-assets-pack-v1.0 (1)/comida/golosina-01.png"
+ruta_textura = "res://assets/argentinian-assets-pack-v1.0 (1)/comida/golosina-01.png"
 
 [node name="Cartel01" parent="." instance=ExtResource("51_cartel")]
 position = Vector2(2440, 800)
 titulo = "ESTACIÓN CONSTITUCIÓN"
 texto = "La salida queda al sur, pasando los molinetes: necesitás la SUBE. Tu celular es tu linterna, cuidá la batería (Q la apaga). Se rumorea que en algún lugar del mapa hay un cargador portátil (powerbank): con él tenés 100% de batería el resto del juego, sin volver a cargar. Aparece más o menos a la mitad del recorrido."
-rutaTextura = "res://assets/carteles/cartel_bateria.png"
+ruta_textura = "res://assets/carteles/cartel_bateria.png"
 
 [node name="Cartel02" parent="." instance=ExtResource("51_cartel")]
 position = Vector2(1620, 1990)
 titulo = "MOLINETES"
 texto = "Pasá con la SUBE. ¿No la encontraste? Podés forzar los molinetes igual: con una ganzúa jugás a la cerradura, y sin ganzúa tenés que hacerlo a mano con los pernos. Acercate al molinete y apretá F."
-rutaTextura = "res://assets/carteles/cartel_llave.png"
+ruta_textura = "res://assets/carteles/cartel_llave.png"
 
 [node name="Cartel03" parent="." instance=ExtResource("51_cartel")]
 position = Vector2(2180, 1680)
 titulo = "PUNTO DE CARGA"
 texto = "Mantené F cerca de un poste celeste para cargar el celular: de 0 a 100% tarda unos 20 segundos. Hay postes en la estación, en la plaza y en el McDonald's."
-rutaTextura = "res://assets/carteles/cartel_info.png"
+ruta_textura = "res://assets/carteles/cartel_info.png"
 
 [node name="Cartel04" parent="." instance=ExtResource("51_cartel")]
 position = Vector2(668, 700)
 titulo = "KIOSCO"
 texto = "Golosinas y alfajores, todo tirado ahí en el mostrador. Cada golosina te cura 1 de vida. Acercate y apretá F para comer."
-rutaTextura = "res://assets/carteles/cartel_alerta.png"
+ruta_textura = "res://assets/carteles/cartel_alerta.png"
 
 [node name="Cartel05" parent="." instance=ExtResource("51_cartel")]
 position = Vector2(1660, 2322)
 titulo = "PLAZA CONSTITUCIÓN"
 texto = "Cuidado con los vagabundos: son agresivos y te persiguen. A veces dejan una bebida al caer: tomala para curarte 0,5. Las golosinas curan 1 y las hamburguesas 2."
-rutaTextura = "res://assets/carteles/cartel_alerta.png"
+ruta_textura = "res://assets/carteles/cartel_alerta.png"
 
 [node name="Cartel06" parent="." instance=ExtResource("51_cartel")]
 position = Vector2(830, 2670)
 titulo = "McDONALD'S"
 texto = "Cerrado con llave. Alguien la dejó tirada en algún lugar de la plaza. Si no la encontrás, no hay otra forma de entrar."
-rutaTextura = "res://assets/carteles/cartel_llave.png"
+ruta_textura = "res://assets/carteles/cartel_llave.png"
 
 [node name="Cartel07" parent="." instance=ExtResource("51_cartel")]
 position = Vector2(1700, 2610)
 titulo = "RUMORES"
 texto = "Dicen que a mitad de camino hay un cargador portátil (powerbank). Con él, tu celular queda siempre al 100% de batería y no tenés que cargarlo nunca más."
-rutaTextura = "res://assets/carteles/cartel_bateria.png"
+ruta_textura = "res://assets/carteles/cartel_bateria.png"
 
 [node name="PUERTA_MCDONALDS" type="Node2D" parent="." unique_id=1589970161]
 position = Vector2(652, 2696)
@@ -1795,11 +1795,11 @@ polygon = PackedVector2Array(0, 0, 24, 0, 24, 96, 0, 96)
 [node name="EntradaMcDonalds" type="Area2D" parent="." unique_id=1756060015]
 position = Vector2(700, 2745)
 script = ExtResource("7_entrada")
-idLlaveRequerida = "llaveMc"
-rutaNivel = "res://escenas/nivel_mc.tscn"
-puntoDestino = "PUNTO_APARICION_JUGADOR"
-mensajeBloqueada = "Esta cerrado, necesito la llave"
-textoAviso = "F para entrar al McDonalds"
+llave_requerida = "llaveMc"
+ruta_nivel = "res://escenas/niveles/nivel_mc.tscn"
+punto_destino = "PUNTO_APARICION_JUGADOR"
+mensaje_bloqueada = "Esta cerrado, necesito la llave"
+texto_aviso = "F para entrar al McDonalds"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EntradaMcDonalds" unique_id=2105753215]
 shape = SubResource("Shape_EntradaMc")
@@ -1811,22 +1811,22 @@ script = ExtResource("60_pathfinding")
 position = Vector2(2200, 1850)
 titulo = "RELOJ"
 texto = "El reloj de la estación está clavado en las 3:07. Tu celular marca lo mismo, y tenés una llamada perdida de «Casa» de esa hora. El tren que te dejó se fue despacio y no vuelve."
-rutaTextura = "res://assets/carteles/cartel_info.png"
+ruta_textura = "res://assets/carteles/cartel_info.png"
 
 [node name="CartelSubte" parent="." instance=ExtResource("51_cartel")]
 position = Vector2(3440, 2500)
 titulo = "LÍNEA C"
 texto = "CERRADO POR OBRAS. Llaves en custodia del local de la esquina. No dice cuál. El único local de la esquina es el McDonald's. Por las avenidas no se puede salir: la niebla te devuelve a la plaza."
-rutaTextura = "res://assets/carteles/cartel_llave.png"
+ruta_textura = "res://assets/carteles/cartel_llave.png"
 
 [node name="EntradaSubte" parent="." instance=ExtResource("61_entrada_nivel")]
 position = Vector2(3264, 2512)
 scale = Vector2(1.5, 1)
-idLlaveRequerida = "llaveSubte"
-rutaNivel = "res://escenas/nivel_5.tscn"
-puntoDestino = "PUNTO_APARICION_JUGADOR"
-mensajeBloqueada = "El candado es enorme y no cede. Hace falta la llave"
-textoAviso = "F para bajar al subte"
+llave_requerida = "llaveSubte"
+ruta_nivel = "res://escenas/niveles/nivel_5.tscn"
+punto_destino = "PUNTO_APARICION_JUGADOR"
+mensaje_bloqueada = "El candado es enorme y no cede. Hace falta la llave"
+texto_aviso = "F para bajar al subte"
 
 [node name="COMISARIA_FACHADA" type="Node2D" parent="."]
 position = Vector2(2912, 3060)
@@ -1855,15 +1855,15 @@ polygon = PackedVector2Array(0, 0, 96, 0, 96, 28, 0, 28)
 [node name="EntradaComisaria" parent="." instance=ExtResource("61_entrada_nivel")]
 position = Vector2(3008, 3220)
 scale = Vector2(1, 0.75)
-rutaNivel = "res://escenas/nivel_3.tscn"
-puntoDestino = "PUNTO_APARICION_JUGADOR"
-textoAviso = "F para entrar a la comisaría"
+ruta_nivel = "res://escenas/niveles/nivel_3.tscn"
+punto_destino = "PUNTO_APARICION_JUGADOR"
+texto_aviso = "F para entrar a la comisaría"
 
 [node name="CartelComisaria" parent="." instance=ExtResource("51_cartel")]
 position = Vector2(2812, 3230)
 titulo = "COMISARÍA"
 texto = "La puerta no tiene traba. Adentro no hay policías ni detenidos: solo lo que quedó. Dicen que en el depósito de evidencia hay algo que sirve contra lo que anda por el McDonald's."
-rutaTextura = "res://assets/carteles/cartel_alerta.png"
+ruta_textura = "res://assets/carteles/cartel_alerta.png"
 
 [node name="NieblaSur" parent="." instance=ExtResource("62_teleport")]
 position = Vector2(2048, 3436)
@@ -1927,24 +1927,24 @@ position = Vector2(1900, 1900)
 
 [node name="SUBE" parent="." unique_id=1901465831 instance=ExtResource("3_objeto")]
 position = Vector2(1150, 1650)
-idLlave = "sube"
-nombreObjeto = "SUBE"
-idTutorialPersonalizado = "sube"
+id_llave = "sube"
+nombre_objeto = "SUBE"
+tutorial_propio = "sube"
 
 [node name="LlaveMcDonalds" parent="." unique_id=1360776584 instance=ExtResource("3_objeto")]
 position = Vector2(3260, 3150)
-idLlave = "llaveMc"
-nombreObjeto = "Llave del McDonalds"
+id_llave = "llaveMc"
+nombre_objeto = "Llave del McDonalds"
 
 [node name="ZonaMolinetes" type="Area2D" parent="." unique_id=1893183612]
 position = Vector2(1917, 2048)
 script = ExtResource("2_puerta")
-idLlaveRequerida = "sube"
-mensajeAbierta = "Pasaste los molinetes"
-textoAviso = "F para pasar (SUBE o forzar)"
-forzarSiNoHayLlave = true
-idTutorialAlAbrir = "combate"
-bloqueosExtra = Array[NodePath]([NodePath("../MOLINETE_01/StaticBody2D/CollisionShape2D"), NodePath("../MOLINETE_02/StaticBody2D/CollisionShape2D"), NodePath("../MOLINETE_03/StaticBody2D/CollisionShape2D"), NodePath("../MOLINETE_04/StaticBody2D/CollisionShape2D"), NodePath("../MOLINETE_05/StaticBody2D/CollisionShape2D"), NodePath("../MOLINETE_06/StaticBody2D/CollisionShape2D")])
+llave_requerida = "sube"
+mensaje_abierta = "Pasaste los molinetes"
+texto_aviso = "F para pasar (SUBE o forzar)"
+forzar_sin_llave = true
+tutorial_al_abrir = "combate"
+bloqueos_extra = Array[NodePath]([NodePath("../MOLINETE_01/StaticBody2D/CollisionShape2D"), NodePath("../MOLINETE_02/StaticBody2D/CollisionShape2D"), NodePath("../MOLINETE_03/StaticBody2D/CollisionShape2D"), NodePath("../MOLINETE_04/StaticBody2D/CollisionShape2D"), NodePath("../MOLINETE_05/StaticBody2D/CollisionShape2D"), NodePath("../MOLINETE_06/StaticBody2D/CollisionShape2D")])
 
 [node name="ColisionZonaMolinetes" type="CollisionShape2D" parent="ZonaMolinetes" unique_id=104633837]
 shape = SubResource("Shape_ZonaMolinetes")
@@ -1956,11 +1956,11 @@ shape = SubResource("Shape_BloqueoMolinetes")
 
 [node name="ZonaTutorialCombate" parent="." unique_id=1660306162 instance=ExtResource("5_zona")]
 position = Vector2(1920, 2200)
-idTutorial = "combate"
+id_tutorial = "combate"
 
 [node name="ZonaTutorialFinal" parent="." unique_id=495658636 instance=ExtResource("5_zona")]
 position = Vector2(2848, 4600)
-idTutorial = "final"
+id_tutorial = "final"
 
 [node name="Enemigo1" parent="." unique_id=1552811569 instance=ExtResource("4_enemigo")]
 position = Vector2(1300, 2900)
@@ -2003,7 +2003,7 @@ position = Vector2(1300, 3700)
 [node name="Piedra7" parent="." unique_id=510973901 instance=ExtResource("8_piedra")]
 position = Vector2(2100, 4100)
 
-[connection signal="body_entered" from="EntradaMcDonalds" to="EntradaMcDonalds" method="alEntrarCuerpo"]
-[connection signal="body_exited" from="EntradaMcDonalds" to="EntradaMcDonalds" method="alSalirCuerpo"]
-[connection signal="body_entered" from="ZonaMolinetes" to="ZonaMolinetes" method="alEntrarCuerpo"]
-[connection signal="body_exited" from="ZonaMolinetes" to="ZonaMolinetes" method="alSalirCuerpo"]
+[connection signal="body_entered" from="EntradaMcDonalds" to="EntradaMcDonalds" method="_on_body_entered"]
+[connection signal="body_exited" from="EntradaMcDonalds" to="EntradaMcDonalds" method="_on_body_exited"]
+[connection signal="body_entered" from="ZonaMolinetes" to="ZonaMolinetes" method="_on_body_entered"]
+[connection signal="body_exited" from="ZonaMolinetes" to="ZonaMolinetes" method="_on_body_exited"]

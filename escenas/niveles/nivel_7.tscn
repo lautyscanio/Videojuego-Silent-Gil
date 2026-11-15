@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://scripts/nivel.gd" id="nivel"]
 [ext_resource type="Script" path="res://scripts/pathfinding.gd" id="pathfinding"]
-[ext_resource type="PackedScene" uid="uid://oob0ouo3ypvy" path="res://escenas/jugador.tscn" id="1_jugador"]
-[ext_resource type="PackedScene" path="res://escenas/cartel.tscn" id="e1"]
-[ext_resource type="PackedScene" path="res://escenas/zonaTutorial.tscn" id="e2"]
+[ext_resource type="PackedScene" uid="uid://oob0ouo3ypvy" path="res://escenas/jugador/jugador.tscn" id="1_jugador"]
+[ext_resource type="PackedScene" path="res://escenas/objetos/cartel.tscn" id="e1"]
+[ext_resource type="PackedScene" path="res://escenas/mundo/zona_tutorial.tscn" id="e2"]
 [ext_resource type="Texture2D" path="res://assets/texturas/baldosa.png" id="tx_baldosa"]
 [ext_resource type="Texture2D" path="res://assets/texturas/ladrillo.png" id="tx_ladrillo"]
 [ext_resource type="Texture2D" path="res://assets/texturas/madera.png" id="tx_madera"]
@@ -66,8 +66,8 @@ size = Vector2(1248, 32)
 
 [node name="NivelCasa" type="Node2D"]
 script = ExtResource("nivel")
-tituloIntro = "TU CASA"
-textoIntro = "Llegaste. Las llaves entran en la cerradura y las luces andan. Entrá a la cocina."
+titulo_intro = "TU CASA"
+texto_intro = "Llegaste. Las llaves entran en la cerradura y las luces andan. Entrá a la cocina."
 
 [node name="Pathfinding" type="Node" parent="."]
 script = ExtResource("pathfinding")
@@ -490,23 +490,23 @@ position = Vector2(1120, 1056)
 position = Vector2(1120, 920)
 titulo = "TU CASA"
 texto = "Las llaves entran en la cerradura. Todo está donde lo dejaste. Las luces andan. No hay nadie."
-rutaTextura = "res://assets/carteles/cartel_llave.png"
+ruta_textura = "res://assets/carteles/cartel_llave.png"
 
 [node name="CartelLiving" parent="." instance=ExtResource("e1")]
 position = Vector2(460, 280)
 titulo = "CELULAR"
 texto = "Tenés una llamada perdida de «Casa». Es de las 3:07."
-rutaTextura = "res://assets/carteles/cartel_info.png"
+ruta_textura = "res://assets/carteles/cartel_info.png"
 
 [node name="CartelReloj" parent="." instance=ExtResource("e1")]
 position = Vector2(1056, 250)
 titulo = "RELOJ DE LA COCINA"
 texto = "El reloj de la cocina marca las 3:07. La llamada perdida sigue en el celular, de hace un rato. Ya no sabés quién llamó a quién."
-rutaTextura = "res://assets/carteles/cartel_alerta.png"
+ruta_textura = "res://assets/carteles/cartel_alerta.png"
 
 [node name="ZonaFin" parent="." instance=ExtResource("e2")]
 position = Vector2(1056, 330)
-idTutorial = "fin"
+id_tutorial = "fin"
 
 [node name="PUNTO_APARICION_JUGADOR" type="Marker2D" parent="."]
 position = Vector2(1120, 1000)
