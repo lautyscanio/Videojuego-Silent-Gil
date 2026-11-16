@@ -1,21 +1,35 @@
 # Guía para pasar los cambios nuevos al repo oficial
 
-Esta guía divide todo lo nuevo (la versión avanzada) en **7 commits** para ir incorporándolos de a poco al repo oficial. Cada commit se puede hacer en una compu distinta, uno después del otro, y **después de cada uno el juego se abre y funciona**.
+Esta guía divide lo que le falta al repo oficial en commits chicos, para ir incorporándolos de a poco. Cada commit se puede hacer en una compu distinta y **después de cada uno el juego se abre y funciona**.
 
 - Repo oficial: `https://github.com/SOrtiz1967/Silent-Gil-Proyecto-Final`
-- Repo avanzado (de donde se copian los archivos): `https://github.com/lautyscanio/Videojuego-Silent-Gil`, rama `reestructuracion`, commit `a334d3a`.
+- Repo avanzado (de donde se copian los archivos): `https://github.com/lautyscanio/Videojuego-Silent-Gil`
+  - commits 3 a 7: rama `main`, commit `611f288` (misma estructura que el oficial)
+  - commits 8 y 9: rama `reestructuracion`, commit `a334d3a` (estructura nueva)
 
-Los 7 commits se probaron en un clon del oficial, uno por uno: el juego abre sin errores en cada paso y, al terminar el 7, el proyecto queda igual que el avanzado.
+## Qué cambió respecto de la primera versión de la guía
 
-| # | Commit | Qué entra |
-|---|---|---|
-| 1 | Estructura de carpetas | escenas por tema, scripts en `snake_case`. No cambia el código |
-| 2 | Scripts nuevos | todos los scripts reescritos, enemigos con aviso/aturdimiento, jugador con pistola, hamburguesas y ayuda (H) |
-| 3 | Objetivo en pantalla | cartel de objetivo, controles en el menú de pausa |
-| 4 | Personajes nuevos | Cliente, Guarda, aparición de bichos y pathfinding |
-| 5 | Piezas nuevas del mapa | escondites, bengalas, entradas de nivel, teletransporte, tren fantasma y texturas |
-| 6 | Niveles nuevos | comisaría, celda, subte, estación que no existe y casa |
-| 7 | Plaza y McDonald's | se conectan con los niveles nuevos + README e historia |
+La primera versión se armó contra un clon viejo del oficial. Mientras tanto, el oficial ya recibió casi todo lo nuevo, en la estructura de siempre (escenas sueltas en `escenas/`, scripts en camelCase):
+
+- los commits de lulorojas del 26/10: objetivo en pantalla, ayuda con H, combate con aviso, pistola de bengalas, niveles 3 a 7, pathfinding, cliente;
+- el PR #3 de lautyscanio (15/11): menos luz, el trato de las 3 hamburguesas con el Cliente, escondites y la tecla C para comer.
+
+Por eso ahora la guía **sigue la estructura que ya tiene el oficial**:
+
+- **Commits 3 a 7:** traen lo que falta sin mover nada de lugar. No tocan ninguna línea de lo que entró en el PR #3: donde se cruzan con esos archivos, solo agregan cosas.
+- **Commits 8 y 9:** la reestructuración (carpetas por tema y snake_case), que antes eran el 1 y el 2. Quedan al final y son opcionales: se hacen solo si el equipo decide pasar a la estructura nueva.
+
+Todo se probó en un clon del oficial (`main` en `667cd4cf`, con el PR #3 adentro): en cada paso los 7 niveles cargan sin errores. Al terminar el 7, el oficial queda igual al `main` del avanzado. Al terminar el 9, queda igual a `reestructuracion`.
+
+| # | Commit | Qué entra | Estado |
+|---|---|---|---|
+| 3 | Objetivo del McDonald's | el objetivo sigue el trato de las 3 hamburguesas con el Cliente | **hecho**: rama `reestructura/03-objetivo` |
+| 4 | Guarda | script propio del Guarda (`guarda.gd`) | **hecho**: rama `reestructura/04-personajes` |
+| 5 | Piezas nuevas del mapa | zona de mensaje, tren fantasma, sprites de objetos y texturas | falta |
+| 6 | Niveles | comisaría, celda, subte, estación que no existe y casa actualizados | falta |
+| 7 | Plaza y McDonald's | texturas, llave del Mc accesible, README e historia | falta |
+| 8 | Estructura de carpetas (opcional) | escenas por tema y archivos en `snake_case`. No cambia el código | falta |
+| 9 | Scripts en snake_case (opcional) | todos los scripts reescritos con el estilo nuevo | falta |
 
 ## Antes de empezar (una sola vez por compu)
 
@@ -24,39 +38,193 @@ git clone https://github.com/SOrtiz1967/Silent-Gil-Proyecto-Final.git
 cd Silent-Gil-Proyecto-Final
 git remote add avanzado https://github.com/lautyscanio/Videojuego-Silent-Gil.git
 git fetch avanzado
+git cat-file -t 611f288
 git cat-file -t a334d3a
 ```
 
-El último comando tiene que imprimir `commit`. Si ya tenían el oficial clonado, solo hacen los 3 últimos.
+Los dos últimos comandos tienen que imprimir `commit`. Si ya tenían el oficial clonado, solo hacen los 4 últimos.
 
 Reglas para todos los commits:
 
-1. **Un commit por vez y en orden.** Antes de empezar el siguiente, el anterior tiene que estar mergeado en `main` del oficial y cada uno hace `git pull`.
+1. **Un commit por vez y en orden.** Antes de empezar el siguiente, el anterior tiene que estar mergeado en `main` del oficial y cada uno hace `git pull`. La única excepción son el 3 y el 4: tocan archivos distintos, así que se pueden mergear en cualquier orden.
 2. **Usar siempre los `git add` de esta guía**, nunca `git add .` ni `git add -A` solos. Cuando Godot abre el proyecto modifica archivos `.import` y no queremos subirlos.
-3. Los archivos se traen del avanzado con `git checkout a334d3a -- <archivos>`. Es una copia exacta del archivo de ese commit.
+3. Los archivos se traen del avanzado con `git checkout <commit> -- <archivos>`, que copia exacto el archivo de ese commit.
 4. Después de cada paso hay que abrir el proyecto en Godot, apretar F5 y probar lo que dice "Probar".
-5. Los scripts de Python (commits 1 y 2) se guardan **fuera** de la carpeta del repo (por ejemplo en el Escritorio) y se ejecutan parados en la raíz del repo. Así no hace falta commitearlos.
+5. El script de Python del commit 8 se guarda **fuera** de la carpeta del repo (por ejemplo en el Escritorio) y se ejecuta parado en la raíz del repo. Así no hace falta commitearlo.
 
 El flujo de ramas es el mismo de siempre: rama nueva desde `main`, push, Pull Request y que otro del equipo lo revise.
 
 ---
 
-## Commit 1: estructura de carpetas
+## Commit 3: objetivo del McDonald's (hecho)
+
+**Rama:** `reestructura/03-objetivo`, ya subida. Falta abrir el PR y que alguien lo revise.
+
+**Qué hace:** el cartel de objetivo ya estaba en el oficial, igual que los controles en la pausa y el tutorial más grande. Pero en el McDonald's seguía diciendo "Pegale al Cliente", que era como funcionaba antes del PR #3. Ahora sigue el trato:
+
+1. hablar con el Cliente;
+2. buscar las hamburguesas, con la pista que da el Cliente y el conteo `x/3`;
+3. llevársela al Cliente.
+
+Si te comés una, el objetivo cambia a pelear con él.
+
+| Archivo | Cambio |
+|---|---|
+| `scripts/objetivo.gd` | el paso del McDonald's usa `pasoHamburguesas` (la versión de lautyscanio en el avanzado) |
+| `scripts/objetivo.gd.uid` | nuevo (faltaba en el oficial) |
+
+Los textos nuevos del subte (cabina de señales) y del Guarda **no** entran acá, porque hablan de cosas que todavía no están en el mapa: entran en el commit 6, junto con esos niveles.
+
+**Probar:** en el McDonald's el objetivo dice "Hablá con el Cliente...". Cuando encontrás una hamburguesa, dice que se la lleves. Después de entregarla, muestra la pista del Cliente y el conteo (`1/3`). Si te la comés (C), dice que el Cliente pelea a muerte.
+
+---
+
+## Commit 4: Guarda (hecho)
+
+**Rama:** `reestructura/04-personajes`, ya subida. Falta abrir el PR y que alguien lo revise.
+
+**Qué hace:** suma el script propio del Guarda. `cliente.gd`, `aparicion.gd` y `pathfinding.gd` ya estaban en el oficial y no se tocan.
+
+| Archivo | Qué es |
+|---|---|
+| `scripts/guarda.gd` y `.uid` | el Guarda (hereda de `enemigo.gd`). Con la linterna prendida te ve de lejos. A oscuras camina despacio hacia donde vio tu luz. Si le pegás, toca el silbato y te persigue rápido un rato |
+
+Todavía no lo usa ningún nivel: el Guarda de la estación que no existe pasa a usarlo en el commit 6.
+
+**Probar:** el proyecto abre sin errores en la consola de Godot. El juego se ve igual.
+
+---
+
+## Commit 5: piezas nuevas del mapa
+
+**Qué hace:** suma las piezas que usan los niveles de los commits 6 y 7.
+
+| Archivo | Qué es |
+|---|---|
+| `scripts/zonaMensaje.gd` y `escenas/zonaMensaje.tscn` | muestra un mensaje una vez al entrar |
+| `scripts/tren_fantasma.gd` | el tren vacío que cruza el subte |
+| `assets/sube.svg`, `ganzua.svg`, `silbato.svg`, `pistola_bengalas.svg` (con sus `.import`) | sprites propios de la SUBE, la ganzúa, el silbato y la caja de bengalas |
+| `scripts/objetoClave.gd` | usa esos sprites en vez de la llave para todo (solo agrega líneas) |
+| `escenas/bengalas.tscn` | la caja de bengalas usa su sprite nuevo |
+| `assets/texturas/` | 11 texturas de los niveles (con sus `.import`) |
+
+**Pasos**
+
+```
+git checkout main
+git pull origin main
+git checkout -b reestructura/05-piezas-mapa
+git checkout 611f288 -- scripts/zonaMensaje.gd scripts/zonaMensaje.gd.uid escenas/zonaMensaje.tscn scripts/tren_fantasma.gd scripts/tren_fantasma.gd.uid scripts/objetoClave.gd escenas/bengalas.tscn assets/sube.svg assets/sube.svg.import assets/ganzua.svg assets/ganzua.svg.import assets/silbato.svg assets/silbato.svg.import assets/pistola_bengalas.svg assets/pistola_bengalas.svg.import assets/texturas
+git add scripts/zonaMensaje.gd scripts/zonaMensaje.gd.uid escenas/zonaMensaje.tscn scripts/tren_fantasma.gd scripts/tren_fantasma.gd.uid scripts/objetoClave.gd escenas/bengalas.tscn assets/sube.svg assets/sube.svg.import assets/ganzua.svg assets/ganzua.svg.import assets/silbato.svg assets/silbato.svg.import assets/pistola_bengalas.svg assets/pistola_bengalas.svg.import assets/texturas
+git status
+git commit -m "piezas nuevas del mapa: zona de mensaje, tren fantasma, sprites de objetos y texturas"
+git push origin reestructura/05-piezas-mapa
+```
+
+`git status` tiene que mostrar 37 archivos: 35 nuevos y 2 modificados (`scripts/objetoClave.gd` y `escenas/bengalas.tscn`). Las texturas son 11 `.png` y 11 `.png.import`.
+
+**Probar:** abre sin errores. La SUBE, la ganzúa y el silbato tienen sprite propio, y la caja de bengalas de la comisaría también. Lo demás se ve igual.
+
+---
+
+## Commit 6: niveles
+
+**Qué hace:** actualiza los niveles 3 a 7 y los textos del objetivo que dependen de ellos. Necesita el 3, el 4 y el 5 mergeados.
+
+| Archivo | Cambio |
+|---|---|
+| `escenas/nivel_3.tscn`, `nivel_3_celda.tscn`, `nivel_7.tscn` | texturas (solo agrega líneas) |
+| `escenas/nivel_5.tscn` | el tren fantasma; la puerta de servicio pide la llave de servicio, que está en la cabina de señales (se fuerza con F); 2 pálidos más; más oscuro; texturas |
+| `escenas/nivel_6.tscn` | el Guarda usa `guarda.gd`; 3 zonas de mensaje (silbato lejos, pasos, silbato cerca); más oscuro; texturas |
+| `scripts/objetivo.gd` | los pasos del subte (cabina de señales) y del Guarda |
+
+**Pasos**
+
+```
+git checkout main
+git pull origin main
+git checkout -b reestructura/06-niveles
+git checkout 611f288 -- escenas/nivel_3.tscn escenas/nivel_3_celda.tscn escenas/nivel_5.tscn escenas/nivel_6.tscn escenas/nivel_7.tscn scripts/objetivo.gd
+git add escenas/nivel_3.tscn escenas/nivel_3_celda.tscn escenas/nivel_5.tscn escenas/nivel_6.tscn escenas/nivel_7.tscn scripts/objetivo.gd
+git status
+git commit -m "niveles: tren fantasma y cabina de senales en el subte, guarda con silbato, mensajes y texturas"
+git push origin reestructura/06-niveles
+```
+
+`git status` tiene que mostrar los 6 archivos modificados.
+
+**Probar:**
+- **Subte:** pasa el tren vacío. La puerta de servicio está cerrada y el objetivo manda a la cabina de señales, donde está la llave.
+- **Estación que no existe:** con la linterna prendida el Guarda te ve de lejos. A oscuras va hacia donde vio tu luz. Si le pegás, toca el silbato.
+- **Comisaría, celda y casa:** se ven con texturas.
+
+Cada nivel se puede abrir solo con F6.
+
+---
+
+## Commit 7: plaza y McDonald's + documentación
+
+**Qué hace:** con esto el oficial queda igual al `main` del avanzado.
+
+| Archivo | Cambio |
+|---|---|
+| `escenas/nivel_1.tscn` | texturas, y la llave del McDonald's se mueve un poco a la derecha: estaba adentro de la colisión de la fachada de la comisaría y no se podía agarrar |
+| `escenas/nivel_mc.tscn` | texturas (solo agrega líneas: el Cliente, los escondites y todo lo del PR #3 quedan igual) |
+| `README.md` | al día con el recorrido |
+| `docs/historia.md` | al día con la historia |
+
+**Pasos**
+
+```
+git checkout main
+git pull origin main
+git checkout -b reestructura/07-plaza-y-mcdonalds
+git checkout 611f288 -- escenas/nivel_1.tscn escenas/nivel_mc.tscn README.md docs/historia.md
+git add escenas/nivel_1.tscn escenas/nivel_mc.tscn README.md docs/historia.md
+git status
+git commit -m "plaza y mcdonalds con texturas, llave del mc accesible, readme e historia al dia"
+git push origin reestructura/07-plaza-y-mcdonalds
+```
+
+**Probar (recorrido completo):**
+1. Intro del tren, SUBE y molinetes.
+2. Llave del Mc. Ahora se agarra con F.
+3. McDonald's: el trato con el Cliente, los escondites, el powerbank y los bichos.
+4. Reja del subte y subte: cabina de señales y puerta de servicio.
+5. Estación que no existe: el Guarda y el silbato.
+6. La casa.
+
+Opcional: la comisaría, abajo a la derecha de la plaza.
+
+**Comprobación:** con el 7 mergeado, esto no tiene que mostrar diferencias de código (solo puede haber diferencias en archivos `.import` y en finales de línea):
+
+```
+git fetch avanzado
+git diff --stat 611f288 main -- escenas scripts project.godot README.md docs
+```
+
+---
+
+## Commits 8 y 9: reestructuración (opcional)
+
+Solo si el equipo decide pasar a la estructura nueva: escenas en carpetas por tema y todo en `snake_case`. Si no, la guía termina en el 7. Necesitan el 7 mergeado: parten de que el oficial ya es igual al `main` del avanzado.
+
+### Commit 8: estructura de carpetas
 
 **Qué hace:** mueve cada escena a una carpeta por tema y pasa los nombres de archivo a `snake_case`. No cambia ni una línea de código, solo las rutas `res://`.
 
 ```
-escenas/niveles/        nivel_1, nivel_mc
+escenas/niveles/        nivel_1, nivel_mc, nivel_3, nivel_3_celda, nivel_5, nivel_6, nivel_7
 escenas/niveles/mapas/  estacion_visual, plaza_visual
-escenas/jugador/        jugador, proyectil
+escenas/jugador/        jugador, proyectil, bengala
 escenas/enemigos/       enemigo
-escenas/objetos/        consumible, objeto_clave, cartel, piedra, powerbank, punto_carga, farola
-escenas/mundo/          puerta, zona_tutorial, tren
-escenas/interfaz/       inventario, tutorial, menu_pausa
+escenas/objetos/        consumible, objeto_clave, cartel, piedra, powerbank, punto_carga, farola, bengalas, escondite
+escenas/mundo/          puerta, zona_tutorial, tren, entrada_nivel, teletransporte, zona_mensaje
+escenas/interfaz/       inventario, tutorial, menu_pausa, objetivo
 escenas/minijuegos/     cerradura, pernos
 escenas/pruebas/        principal
 scripts/                (sigue plano) objetoClave.gd pasa a objeto_clave.gd, entradaNivel.gd a entrada_nivel.gd,
-                        puntoCarga.gd a punto_carga.gd, zonaTutorial.gd a zona_tutorial.gd
+                        puntoCarga.gd a punto_carga.gd, zonaTutorial.gd a zona_tutorial.gd, zonaMensaje.gd a zona_mensaje.gd
 docs/                   TP_Investigacion_Pre_Viaje_Scanio.docx (estaba en la raíz)
 ```
 
@@ -65,7 +233,7 @@ docs/                   TP_Investigacion_Pre_Viaje_Scanio.docx (estaba en la ra�
 ```
 git checkout main
 git pull origin main
-git checkout -b reestructura/01-estructura
+git checkout -b reestructura/08-estructura
 ```
 
 Guardar el script `migrar_estructura.py` (más abajo) fuera del repo y correrlo desde la raíz del repo:
@@ -74,7 +242,7 @@ Guardar el script `migrar_estructura.py` (más abajo) fuera del repo y correrlo 
 python C:\ruta\donde\lo\guardaron\migrar_estructura.py .
 ```
 
-Tiene que imprimir `archivos con rutas actualizadas: 10` y `archivos movidos/renombrados: 69`. Si imprime `falta en la tabla: ...` es que el oficial tiene una escena que no estaba cuando se armó la guía (avisen).
+Tiene que imprimir `archivos con rutas actualizadas: 18` y `archivos movidos/renombrados: 103`. Si imprime `falta en la tabla: ...`, el oficial tiene una escena que no estaba cuando se armó la guía (avisen).
 
 Abrir el proyecto en Godot, F5 y probar.
 
@@ -82,18 +250,18 @@ Abrir el proyecto en Godot, F5 y probar.
 git add -A -- escenas scripts docs project.godot TP_Investigacion_Pre_Viaje_Scanio.docx
 git status
 git commit -m "estructura de carpetas: escenas agrupadas por tema y scripts en snake_case"
-git push origin reestructura/01-estructura
+git push origin reestructura/08-estructura
 ```
 
-`git status` tiene que mostrar solo renombres (`renamed`) y 3 archivos modificados: `project.godot`, `scripts/enemigo.gd` y `scripts/jugador.gd` (cambian los `preload` por las rutas nuevas).
+`git status` tiene que mostrar 46 renombres (`renamed`) y 3 archivos modificados: `project.godot`, `scripts/enemigo.gd` y `scripts/jugador.gd` (cambian los `preload` por las rutas nuevas).
 
-**Probar:** el juego abre, la intro del tren funciona, se camina, se agarra la SUBE y se pasan los molinetes. Tiene que ser idéntico a antes.
+**Probar:** el juego abre y se juega idéntico a antes.
 
 <details>
 <summary><code>migrar_estructura.py</code></summary>
 
 ```python
-"""Commit 1: mueve las escenas a escenas/<tema>/ y pasa los nombres de archivo a snake_case.
+"""Commit 8: mueve las escenas a escenas/<tema>/ y pasa los nombres de archivo a snake_case.
 No cambia ni una linea de codigo, solo rutas res://.
 uso (desde la raiz del repo oficial):  python migrar_estructura.py ."""
 import os
@@ -109,13 +277,13 @@ def snake(n):
 
 
 CARPETAS = {
-    "niveles": ["nivel_1", "nivel_mc"],
+    "niveles": ["nivel_1", "nivel_mc", "nivel_3", "nivel_3_celda", "nivel_5", "nivel_6", "nivel_7"],
     "niveles/mapas": ["estacion_visual", "plaza_visual"],
-    "jugador": ["jugador", "proyectil"],
+    "jugador": ["jugador", "proyectil", "bengala"],
     "enemigos": ["enemigo"],
-    "objetos": ["consumible", "objetoClave", "cartel", "piedra", "powerbank", "puntoCarga", "farola"],
-    "mundo": ["puerta", "zonaTutorial", "tren"],
-    "interfaz": ["inventario", "tutorial", "menu_pausa"],
+    "objetos": ["consumible", "objetoClave", "cartel", "piedra", "powerbank", "puntoCarga", "farola", "bengalas", "escondite"],
+    "mundo": ["puerta", "zonaTutorial", "tren", "entradaNivel", "teletransporte", "zonaMensaje"],
+    "interfaz": ["inventario", "tutorial", "menu_pausa", "objetivo"],
     "minijuegos": ["cerradura", "pernos"],
     "pruebas": ["principal"],
 }
@@ -176,302 +344,50 @@ print("archivos movidos/renombrados:", len(mapa))
 
 </details>
 
----
+### Commit 9: scripts en snake_case
 
-## Commit 2: scripts nuevos
+**Qué hace:** reemplaza los scripts y las escenas por las versiones con el estilo nuevo. No agrega mecánicas: todo lo que hacen ya está en el oficial.
 
-**Qué hace:** reemplaza todos los scripts por las versiones nuevas (nombres en `snake_case`, handlers `_on_...`, `recibir_daño`, comentarios, `enum` en el tren) y actualiza las escenas para que coincidan con los nombres.
+- **Funciones y variables:** en `snake_case` (`tiene_llave`, `hamburguesas_entregadas`, `recibir_daño`).
+- **Señales:** los métodos conectados pasan a `_on_...`.
+- **Código:** comentarios, tipos, y un `enum` para el estado del tren.
+- **Escenas:** usan los nombres nuevos de las propiedades (`ruta_textura`, `llave_requerida`...).
+- **`nivel_mc`:** pasa a usar `nivel.gd` y se borra `nivel_mc.gd`.
+- **Input:** `mover_arriba/abajo/izquierda/derecha` pasan a `arriba/abajo/izquierda/derecha`, y `golpear` pasa a `atacar`.
+- **`README.md`:** explica la estructura nueva y las convenciones.
+- **Regla del equipo:** las variables `@export` van **sin ñ** (`dano`, no `daño`), porque Godot no guarda bien en el `.tscn` las propiedades con ñ.
 
-Cambios de código que entran junto con la reescritura (todavía no se usan en el mapa hasta los commits siguientes):
-
-- **Enemigo** (`enemigo.gd`): `class_name Enemigo`, avisa antes de pegar (se pone rojo medio segundo), se aturde y es empujado cuando le pegan, puede perseguir solo si el jugador tiene la linterna prendida, usa el pathfinding si el nivel lo tiene y puede soltar una llave al morir.
-- **Jugador** (`jugador.gd`): tecla `C` para comer hamburguesas, disparo de bengalas con la pistola, golpe de 32 px (antes 24), cartel de ayuda con `H`.
-- **Inventario** (`inventario.gd`): hamburguesas, pistola y bengalas en el inventario.
-- **Tutorial** (`tutorial.gd`): textos nuevos (hamburguesa, fin, ayuda). Los textos se buscan por nombre (`texto_` + id).
-- **Niveles**: `nivel.gd` (`class_name Nivel`) acomoda al jugador y muestra el texto de historia del nivel. `nivel_1.gd` hereda de él y `nivel_mc` pasa a usar `nivel.gd` (se borra `nivel_mc.gd`).
-- **Objetos**: `objeto_clave.gd` muestra un sprite propio para la SUBE, el silbato y las ganzúas.
-- **Input**: `mover_arriba/abajo/izquierda/derecha` pasan a `arriba/abajo/izquierda/derecha`, `golpear` pasa a `atacar` y aparecen `comer` (C) y `ayuda` (H).
-- Regla del equipo: las variables `@export` **sin ñ** (`dano`, no `daño`). Godot no guarda bien en el `.tscn` las propiedades con ñ.
+Como después del 8 las escenas del oficial son las mismas que usó la reestructuración, se copian directo de `a334d3a`. Ya no hace falta el `migrar_nombres.py` de la versión anterior.
 
 **Pasos**
 
 ```
 git checkout main
 git pull origin main
-git checkout -b reestructura/02-scripts
-```
-
-1. Traer los archivos del avanzado (todo en una línea):
-
-```
-git checkout a334d3a -- scripts/cambio_nivel.gd scripts/cambio_nivel.gd.uid scripts/cartel.gd scripts/cartel.gd.uid scripts/cerradura.gd scripts/cerradura.gd.uid scripts/consumible.gd scripts/consumible.gd.uid scripts/enemigo.gd scripts/enemigo.gd.uid scripts/entrada_nivel.gd scripts/entrada_nivel.gd.uid scripts/escalera.gd scripts/escalera.gd.uid scripts/farola.gd scripts/farola.gd.uid scripts/inventario.gd scripts/inventario.gd.uid scripts/jugador.gd scripts/jugador.gd.uid scripts/luz_parpadeo.gd scripts/luz_parpadeo.gd.uid scripts/menu_pausa.gd scripts/menu_pausa.gd.uid scripts/nivel.gd scripts/nivel.gd.uid scripts/nivel_1.gd scripts/nivel_1.gd.uid scripts/objeto_clave.gd scripts/objeto_clave.gd.uid scripts/pernos.gd scripts/pernos.gd.uid scripts/piedra.gd scripts/piedra.gd.uid scripts/proyectil.gd scripts/proyectil.gd.uid scripts/puerta.gd scripts/puerta.gd.uid scripts/punto_carga.gd scripts/punto_carga.gd.uid scripts/tren.gd scripts/tren.gd.uid scripts/tutorial.gd scripts/tutorial.gd.uid scripts/zona_tutorial.gd scripts/zona_tutorial.gd.uid escenas/jugador/bengala.tscn escenas/jugador/jugador.tscn assets/ganzua.svg assets/ganzua.svg.import assets/silbato.svg assets/silbato.svg.import assets/sube.svg assets/sube.svg.import project.godot
-```
-
-2. Borrar el script viejo del McDonald's:
-
-```
+git checkout -b reestructura/09-snake-case
+git checkout a334d3a -- escenas scripts project.godot README.md
 git rm scripts/nivel_mc.gd scripts/nivel_mc.gd.uid
-```
-
-3. Abrir `project.godot` con un editor de texto y **borrar la línea** `Objetivo="*res://escenas/interfaz/objetivo.tscn"` de la sección `[autoload]` (esa escena entra en el commit 3). Lo demás del archivo (las acciones de input nuevas) se queda.
-
-4. Correr el script `migrar_nombres.py` (más abajo) desde la raíz del repo. Renombra en los `.tscn` las propiedades (por ejemplo `rutaTextura` a `ruta_textura`, `idLlaveRequerida` a `llave_requerida`), los métodos de las conexiones de señales (`alEntrarCuerpo` a `_on_body_entered`) y cambia el script de `nivel_mc` por `nivel.gd`:
-
-```
-python C:\ruta\donde\lo\guardaron\migrar_nombres.py .
-```
-
-Tiene que imprimir `escenas modificadas: 11`.
-
-5. Abrir Godot, F5 y probar. Después:
-
-```
-git add -A -- scripts escenas assets/ganzua.svg assets/ganzua.svg.import assets/silbato.svg assets/silbato.svg.import assets/sube.svg assets/sube.svg.import project.godot
+git add -A -- escenas scripts project.godot README.md
 git status
-git commit -m "scripts en snake_case y estilo propio, enemigos con aviso y aturdimiento, jugador con pistola, hamburguesas y ayuda"
-git push origin reestructura/02-scripts
+git commit -m "scripts en snake_case y estilo propio, handlers _on_ y nivel_mc usa nivel.gd"
+git push origin reestructura/09-snake-case
 ```
 
-`git status` tiene que mostrar solo cambios en `scripts/`, `escenas/`, `project.godot` y los 3 sprites nuevos (`ganzua`, `silbato`, `sube`).
+`git status` tiene que mostrar 57 archivos, todos dentro de `escenas/`, `scripts/`, `project.godot` o `README.md` (2 de ellos borrados: `nivel_mc.gd` y su `.uid`).
 
-**Probar:** se camina con WASD y flechas, Espacio golpea, `E` tira piedras, `F` agarra la SUBE y pasa los molinetes, `T` abre el inventario, `Q` la linterna, `H` abre los controles, `Esc` la pausa. Los vagabundos ahora se ponen rojos medio segundo antes de pegar y retroceden cuando les pegás. Ojo: el texto de la intro ya menciona el objetivo en pantalla, que aparece en el commit 3.
+**Probar:** se camina con WASD y flechas, Espacio golpea, `E` tira piedras o bengalas, `F` agarra y abre, `C` come, `T` abre el inventario, `Q` la linterna, `H` los controles y `Esc` la pausa. El recorrido completo funciona igual que después del 7.
 
-<details>
-<summary><code>migrar_nombres.py</code></summary>
-
-```python
-"""Commit 2: renombra en los .tscn las propiedades exportadas y los metodos de las conexiones,
-para que coincidan con los scripts nuevos (snake_case).
-Tambien cambia el script de nivel_mc por nivel.gd.
-uso (desde la raiz del repo oficial):  python migrar_nombres.py ."""
-import os
-import re
-import sys
-
-RAIZ = sys.argv[1] if len(sys.argv) > 1 else "."
-
-# nombres que no salen de pasar camelCase a snake_case a secas
-ESPECIALES = {
-    "idLlaveRequerida": "llave_requerida",
-    "idLlaveExtra": "llave_extra",
-    "idTutorialPersonalizado": "tutorial_propio",
-    "idTutorialAlAbrir": "tutorial_al_abrir",
-    "forzarSiNoHayLlave": "forzar_sin_llave",
-    "idLlaveBotin": "llave_botin",
-    "idLlaveDisparadora": "llave_disparadora",
-}
-
-
-def snake(n):
-    return re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", n).lower()
-
-
-def nuevo(n):
-    return ESPECIALES.get(n, snake(n))
-
-
-METODOS = {
-    "alEntrarCuerpo": "_on_body_entered",
-    "alSalirCuerpo": "_on_body_exited",
-    "ocultarMensaje": "_on_temporizador_mensaje_timeout",
-}
-
-prop = re.compile(r"^([a-z][A-Za-z0-9]*) = ", re.M)
-conexion = re.compile(r'^(\[connection signal="[^"]*" from="[^"]*" to="[^"]*" method=")([^"]*)("\]\r?)$', re.M)
-
-total = 0
-for base, dirs, files in os.walk(os.path.join(RAIZ, "escenas")):
-    for f in files:
-        if not f.endswith(".tscn"):
-            continue
-        ruta = os.path.join(base, f)
-        txt = open(ruta, encoding="utf-8", newline="").read()
-        t2 = prop.sub(lambda m: nuevo(m.group(1)) + " = " if re.search(r"[A-Z]", m.group(1)) else m.group(0), txt)
-        t2 = conexion.sub(lambda m: m.group(1) + METODOS.get(m.group(2), m.group(2)) + m.group(3), t2)
-        # el golpe del jugador ya no tiene el print de debug
-        t2 = re.sub(r'^\[connection signal="area_entered" from="ZonaGolpe"[^\n]*\n', "", t2, flags=re.M)
-        if f == "nivel_mc.tscn":
-            t2 = t2.replace('path="res://scripts/nivel_mc.gd"', 'path="res://scripts/nivel.gd"')
-        if t2 != txt:
-            open(ruta, "w", encoding="utf-8", newline="").write(t2)
-            total += 1
-print("escenas modificadas:", total)
-```
-
-</details>
-
----
-
-## Commit 3: objetivo en pantalla
-
-**Qué hace:** suma el cartel de objetivo de arriba a la derecha (dice qué hacer y hacia dónde queda, y se actualiza solo según las llaves que se tengan), agrega los controles al menú de pausa y agranda el cuadro de texto del tutorial.
-
-| Archivo | Cambio |
-|---|---|
-| `scripts/objetivo.gd` y `.uid` | nuevo |
-| `escenas/interfaz/objetivo.tscn` | nueva |
-| `escenas/interfaz/menu_pausa.tscn` | agrega el texto `Controles` debajo de los botones |
-| `escenas/interfaz/tutorial.tscn` | el cuadro de texto es más alto |
-| `project.godot` | autoload `Objetivo` |
-
-**Pasos**
-
-```
-git checkout main
-git pull origin main
-git checkout -b reestructura/03-objetivo
-git checkout a334d3a -- scripts/objetivo.gd scripts/objetivo.gd.uid escenas/interfaz/objetivo.tscn escenas/interfaz/menu_pausa.tscn escenas/interfaz/tutorial.tscn project.godot
-```
-
-Abrir Godot, F5 y probar. Después:
-
-```
-git add scripts/objetivo.gd scripts/objetivo.gd.uid escenas/interfaz/objetivo.tscn escenas/interfaz/menu_pausa.tscn escenas/interfaz/tutorial.tscn project.godot
-git status
-git commit -m "objetivo en pantalla con la direccion a seguir, controles en el menu de pausa y tutorial mas grande"
-git push origin reestructura/03-objetivo
-```
-
-El `project.godot` que se trae es el final: a esta altura solo se agrega la línea `Objetivo=...`.
-
-**Probar:** arriba a la derecha dice "OBJETIVO: Buscá la SUBE..." con la dirección y la distancia; cambia al agarrarla. La pausa (`Esc`) muestra los controles.
-
----
-
-## Commit 4: personajes nuevos
-
-**Qué hace:** suma los scripts de los personajes y sistemas nuevos. Todavía no aparecen en el mapa (se colocan en los niveles de los commits 6 y 7).
-
-| Archivo | Qué es |
-|---|---|
-| `scripts/cliente.gd` | El Cliente del McDonald's (hereda de `Enemigo`): tiene la llave del subte, te la da a cambio de 3 hamburguesas, pelea a muerte si te comés una |
-| `scripts/guarda.gd` | El Guarda: con linterna te ve de lejos, a oscuras camina hacia donde vio tu luz, si le pegás toca el silbato |
-| `scripts/aparicion.gd` | hace aparecer bichos cuando el jugador consigue cierta llave (los de la cocina del Mc) |
-| `scripts/pathfinding.gd` | grilla A* con las colisiones del nivel, para que los enemigos rodeen paredes |
-
-(cada uno con su `.gd.uid`)
-
-**Pasos**
-
-```
-git checkout main
-git pull origin main
-git checkout -b reestructura/04-personajes
-git checkout a334d3a -- scripts/cliente.gd scripts/cliente.gd.uid scripts/guarda.gd scripts/guarda.gd.uid scripts/aparicion.gd scripts/aparicion.gd.uid scripts/pathfinding.gd scripts/pathfinding.gd.uid
-git add scripts/cliente.gd scripts/cliente.gd.uid scripts/guarda.gd scripts/guarda.gd.uid scripts/aparicion.gd scripts/aparicion.gd.uid scripts/pathfinding.gd scripts/pathfinding.gd.uid
-git status
-git commit -m "cliente, guarda, aparicion de bichos y pathfinding para los enemigos"
-git push origin reestructura/04-personajes
-```
-
-**Probar:** el proyecto abre sin errores en la consola de Godot (los scripts nuevos compilan). El juego se ve igual que en el commit 3.
-
----
-
-## Commit 5: piezas nuevas del mapa
-
-**Qué hace:** suma las escenas y scripts que usan los niveles nuevos, más las texturas.
-
-| Archivo | Qué es |
-|---|---|
-| `scripts/escondite.gd` y `escenas/objetos/escondite.tscn` | lugares donde está escondida una hamburguesa (F para revisar) |
-| `scripts/bengalas.gd` y `escenas/objetos/bengalas.tscn` | caja de bengalas; la primera vez da la pistola |
-| `assets/pistola_bengalas.svg` y `.import` | sprite de la caja |
-| `escenas/mundo/entrada_nivel.tscn` (el script ya existía) | puerta para pasar de un nivel a otro |
-| `scripts/teletransporte.gd` y `escenas/mundo/teletransporte.tscn` | zonas que te mandan a otro punto (puertas falsas y túnel de la estación que no existe) |
-| `scripts/zona_mensaje.gd` y `escenas/mundo/zona_mensaje.tscn` | muestra un mensaje una vez al entrar |
-| `scripts/tren_fantasma.gd` | el tren vacío que cruza el subte (usa `enum estado`) |
-| `assets/texturas/` | 11 texturas de los niveles (con sus `.import`) |
-
-**Pasos**
-
-```
-git checkout main
-git pull origin main
-git checkout -b reestructura/05-piezas-mapa
-git checkout a334d3a -- scripts/escondite.gd scripts/escondite.gd.uid escenas/objetos/escondite.tscn scripts/bengalas.gd scripts/bengalas.gd.uid escenas/objetos/bengalas.tscn assets/pistola_bengalas.svg assets/pistola_bengalas.svg.import escenas/mundo/entrada_nivel.tscn scripts/teletransporte.gd scripts/teletransporte.gd.uid escenas/mundo/teletransporte.tscn scripts/zona_mensaje.gd scripts/zona_mensaje.gd.uid escenas/mundo/zona_mensaje.tscn scripts/tren_fantasma.gd scripts/tren_fantasma.gd.uid assets/texturas
-git add scripts/escondite.gd scripts/escondite.gd.uid escenas/objetos/escondite.tscn scripts/bengalas.gd scripts/bengalas.gd.uid escenas/objetos/bengalas.tscn assets/pistola_bengalas.svg assets/pistola_bengalas.svg.import escenas/mundo/entrada_nivel.tscn scripts/teletransporte.gd scripts/teletransporte.gd.uid escenas/mundo/teletransporte.tscn scripts/zona_mensaje.gd scripts/zona_mensaje.gd.uid escenas/mundo/zona_mensaje.tscn scripts/tren_fantasma.gd scripts/tren_fantasma.gd.uid assets/texturas
-git status
-git commit -m "piezas nuevas del mapa: escondites, bengalas, entrada de nivel, teletransporte, tren fantasma y texturas"
-git push origin reestructura/05-piezas-mapa
-```
-
-`git status` tiene que mostrar 39 archivos nuevos, todos de la lista (las texturas son 11 `.png` y 11 `.png.import`).
-
-**Probar:** abre sin errores. Se pueden instanciar las escenas nuevas en `escenas/pruebas/principal.tscn` si quieren verlas sueltas. El juego se ve igual.
-
----
-
-## Commit 6: niveles nuevos
-
-**Qué hace:** suma los 5 niveles nuevos. Todavía no se llega a ellos desde la plaza (eso es el commit 7), pero se pueden abrir y jugar desde Godot.
-
-| Escena | Qué es |
-|---|---|
-| `escenas/niveles/nivel_3.tscn` | comisaría (opcional), tiene la pistola de bengalas |
-| `escenas/niveles/nivel_3_celda.tscn` | la celda: se sale sacando los pernos de la rejilla |
-| `escenas/niveles/nivel_5.tscn` | subte Línea C: pálidos, tren vacío, llave de servicio |
-| `escenas/niveles/nivel_6.tscn` | la estación que no existe: puertas falsas, túnel, el Guarda |
-| `escenas/niveles/nivel_7.tscn` | la casa (final) |
-
-**Pasos**
-
-```
-git checkout main
-git pull origin main
-git checkout -b reestructura/06-niveles
-git checkout a334d3a -- escenas/niveles/nivel_3.tscn escenas/niveles/nivel_3_celda.tscn escenas/niveles/nivel_5.tscn escenas/niveles/nivel_6.tscn escenas/niveles/nivel_7.tscn
-git add escenas/niveles/nivel_3.tscn escenas/niveles/nivel_3_celda.tscn escenas/niveles/nivel_5.tscn escenas/niveles/nivel_6.tscn escenas/niveles/nivel_7.tscn
-git status
-git commit -m "niveles nuevos: comisaria, celda, subte, estacion que no existe y casa"
-git push origin reestructura/06-niveles
-```
-
-**Probar:** abrir cada nivel en Godot (doble clic en la escena) y apretar F6 para correr esa escena sola. Se ve oscuro (es a propósito), con la linterna se ve mejor, y el objetivo de arriba aparece con el texto de cada nivel. El juego normal (F5) sigue empezando en `nivel_1` y se ve igual.
-
----
-
-## Commit 7: plaza y McDonald's conectados + documentación
-
-**Qué hace:** reemplaza `nivel_1` y `nivel_mc` por las versiones nuevas. Con esto el recorrido completo queda jugable de punta a punta.
-
-| Archivo | Cambio |
-|---|---|
-| `escenas/niveles/nivel_1.tscn` | entradas a la comisaría y al subte, niebla en las avenidas, carteles nuevos, más piedras, texturas, nodo `Pathfinding` |
-| `escenas/niveles/nivel_mc.tscn` | el Cliente, los 3 escondites, el powerbank en la oficina, los bichos de la cocina, carteles, luces y oscuridad, `Pathfinding`, texto de historia del nivel |
-| `escenas/niveles/mapas/estacion_visual.tscn` | color de ambiente más oscuro |
-| `README.md` | nueva estructura de carpetas, convenciones, controles, recorrido y tablas de llaves |
-| `docs/historia.md` | borrador de la historia |
-
-**Pasos**
-
-```
-git checkout main
-git pull origin main
-git checkout -b reestructura/07-plaza-y-mcdonalds
-git checkout a334d3a -- escenas/niveles/nivel_1.tscn escenas/niveles/nivel_mc.tscn escenas/niveles/mapas/estacion_visual.tscn README.md docs/historia.md
-git add escenas/niveles/nivel_1.tscn escenas/niveles/nivel_mc.tscn escenas/niveles/mapas/estacion_visual.tscn README.md docs/historia.md
-git status
-git commit -m "plaza y mcdonalds conectados con los niveles nuevos, readme con la estructura y la historia"
-git push origin reestructura/07-plaza-y-mcdonalds
-```
-
-**Probar (recorrido completo):** intro del tren, SUBE, molinetes, llave del Mc, McDonald's (hablar con el Cliente, buscar hamburguesas, powerbank, los bichos), reja del subte, subte (tren vacío, llave de servicio), estación que no existe (Guarda, silbato, SUBE), casa. Opcional: la comisaría, abajo a la derecha de la plaza.
-
----
-
-## Comprobación final
-
-Cuando los 7 commits estén mergeados en `main` del oficial, esto no tiene que mostrar diferencias de código (solo puede haber diferencias en archivos `.import` y en finales de línea):
+**Comprobación final:** con el 9 mergeado, esto no tiene que mostrar diferencias de código:
 
 ```
 git fetch avanzado
-git diff --stat a334d3a main -- escenas scripts project.godot README.md docs/historia.md
+git diff --stat a334d3a main -- escenas scripts project.godot README.md docs
 ```
+
+---
 
 ## Si algo falla
 
-- **Godot dice "Failed to load script" o "Node not found"**: casi siempre falta algún archivo de la lista del commit o se copió en la carpeta equivocada. Revisar con `git status`.
-- **Una propiedad de una escena aparece en su valor por defecto**: no se corrió `migrar_nombres.py` (commit 2).
-- **`git checkout a334d3a -- ...` dice `pathspec ... did not match`**: falta hacer `git fetch avanzado`, o se escribió mal un nombre.
-- **Godot modificó archivos `.import` y aparecen en `git status`**: no los agreguen, se descartan con `git restore <archivo>`.
+- **Godot dice "Failed to load script" o "Node not found":** casi siempre falta algún archivo de la lista del commit, o no está mergeado el commit anterior. Revisar con `git status` y `git log`.
+- **`git checkout 611f288 -- ...` o `git checkout a334d3a -- ...` dice `pathspec ... did not match`:** falta hacer `git fetch avanzado`, o se escribió mal un nombre.
+- **Godot modificó archivos `.import` y aparecen en `git status`:** no los agreguen. Se descartan con `git restore <archivo>`.
