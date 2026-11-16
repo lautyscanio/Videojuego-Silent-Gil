@@ -23,8 +23,8 @@ Todo se probó en un clon del oficial (`main` en `667cd4cf`, con el PR #3 adentr
 
 | # | Commit | Qué entra | Estado |
 |---|---|---|---|
-| 3 | Objetivo del McDonald's | el objetivo sigue el trato de las 3 hamburguesas con el Cliente | **hecho**: rama `reestructura/03-objetivo` |
-| 4 | Guarda | script propio del Guarda (`guarda.gd`) | **hecho**: rama `reestructura/04-personajes` |
+| 3 | Objetivo del McDonald's | el objetivo sigue el trato de las 3 hamburguesas con el Cliente | **hecho**: rama `objetivo-del-trato-con-el-cliente` |
+| 4 | Guarda | script propio del Guarda (`guarda.gd`) | **hecho**: rama `guarda-con-silbato` |
 | 5 | Piezas nuevas del mapa | zona de mensaje, tren fantasma, sprites de objetos y texturas | falta |
 | 6 | Niveles | comisaría, celda, subte, estación que no existe y casa actualizados | falta |
 | 7 | Plaza y McDonald's | texturas, llave del Mc accesible, README e historia | falta |
@@ -58,7 +58,7 @@ El flujo de ramas es el mismo de siempre: rama nueva desde `main`, push, Pull Re
 
 ## Commit 3: objetivo del McDonald's (hecho)
 
-**Rama:** `reestructura/03-objetivo`, ya subida. Falta abrir el PR y que alguien lo revise.
+**Rama:** `objetivo-del-trato-con-el-cliente`, ya subida. Falta abrir el PR y que alguien lo revise.
 
 **Qué hace:** el cartel de objetivo ya estaba en el oficial, igual que los controles en la pausa y el tutorial más grande. Pero en el McDonald's seguía diciendo "Pegale al Cliente", que era como funcionaba antes del PR #3. Ahora sigue el trato:
 
@@ -81,7 +81,7 @@ Los textos nuevos del subte (cabina de señales) y del Guarda **no** entran acá
 
 ## Commit 4: Guarda (hecho)
 
-**Rama:** `reestructura/04-personajes`, ya subida. Falta abrir el PR y que alguien lo revise.
+**Rama:** `guarda-con-silbato`, ya subida. Falta abrir el PR y que alguien lo revise.
 
 **Qué hace:** suma el script propio del Guarda. `cliente.gd`, `aparicion.gd` y `pathfinding.gd` ya estaban en el oficial y no se tocan.
 
